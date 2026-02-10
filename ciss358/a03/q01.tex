@@ -1,0 +1,43 @@
+%-*-latex-*-
+
+$r = a - bq \in X = \{a-bx \mid x \in \Z , a - bx \geq 0 \subseteq \N \}$
+
+let $X = {a-bx \mid x \in \Z a - bx \geq 0}$
+
+We will show $X$ is a non empty set
+\textsc{Case I.} 
+$x = 0, a - b \cdot 0 = a - 0 = a \geq 0$ then $a \in X$ and $X$ is non empty
+
+By WOP $X$ has a least element i.e $a-bx = r$
+
+for some integer $x$ say $x = q$
+
+$a - bq = r \rightarrow a = bq + r$
+
+by contradiction assume $r \geq b$ so, $0 \leq r - b$
+
+\[
+0 \leq a - bq - b = a - b (q + 1)
+\]
+
+so $a - b (q+1) \in S$ i.e $r-b \in X$
+
+but $r$ is the least element in $X$
+
+We will now prove the uniqueness of $r, q$
+
+Assume $\exists r_1, q_1 \in \Z 0 \leq r_1 < b$ such that $a = a_1 b +  r_1$
+
+then $qb +  r = q_1 b + r_1$
+
+$b(q - q_1) = r_1 - r$
+
+so $-b < b (q - q_1) < b$
+
+$-1 < q - q_1 < 1$
+
+so $q-q_1 = 0$ i.e $q = q_1$ hence $r = r1$
+
+
+
+\qed

@@ -1,0 +1,14 @@
+2 bit  a b
+  - 1 bit $~a xor ~b$
+  - 2 bit $b$
+
+3 bit a b c
+  - 1 bit $~a xor ~b~c$
+  - 2 bit $~b xor ~c$
+  - 3 bit $b$
+
+4 bit a b c d
+  - 1 bit $~a xor ~b~c~d$
+  - 2 bit $~b xor ~c~d$
+  - 3 bit $~c xor ~d$
+  - 4 bit $d$

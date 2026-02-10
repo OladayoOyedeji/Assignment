@@ -1,0 +1,79 @@
+%-*-latex-*-
+\input{myassignmentpreamble}
+\input{ciss358}
+\input{yliow}
+\renewcommand\TITLE{Assignment 3}
+
+\begin{document}
+\topmatter
+
+\textsc{Objectives}
+\begin{itemize}
+  \li Review of proof using induction and WOP. 
+  \li Prove the correctness of an algorithm using loop invariants.
+\end{itemize}
+
+
+%------------------------------------------------------------------------------
+\newpage
+Q1.
+Recall from class, I mentioned that there are some proofs
+that you must know because these proofs almost form a template for many other
+proofs.
+The goal of this question is not to design a proof,
+but rather to re-study a given proof very carefully and write an absolutely
+correct proof in your own words and possible filling gaps if necessary.
+
+Prove the following using WOP.
+
+\textsc{Euclidean property of $\N$.}
+If $a, b \in \N = \{0, 1, 2, ...\}$ with $b > 0$,
+then there exist $q$ and $r$ in $\N$ such that
+\[
+a = bq + r, \,\,\, 0 \leq r < b
+\]
+(More is true: $q,r$ are unique. The proof is not difficult
+and if probably proven in discrete 1. I definitely talk about it in 451.)
+
+\SOLUTION
+
+\input{q01.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q2. Prove using invariants and induction that the following algorithm
+(bottom-up recursion for exponentiation) is
+correct.
+\begin{console}
+ALGORITHM: power
+INPUTS: x - base
+        e - exponent
+OUTPUT: x^e, i.e., x raised to power of e
+
+ret = 1
+while e > 0:
+    if e % 2 == 1:
+        ret = ret * x
+    e = e / 2
+    x = x * x
+    
+return ret
+\end{console}
+(Note: \texttt{/} is integer division.)
+
+\SOLUTION
+
+\input{q02.tex}
+
+%------------------------------------------------------------------------------ 
+\newpage
+Q3.
+Prove that the selection sort algorithm is correct using invariants
+and induction.
+
+\SOLUTION
+
+\input{q03.tex}
+
+\end{document}
+

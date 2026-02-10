@@ -1,0 +1,58 @@
+%-*-latex-*-
+ 
+\textit{Proof}.
+We will prove 2 cases
+
+\textsc{Case I.}
+The program returns true
+
+\[
+P(n) = (\text{returns true and} arr[k] \leq arr[k+1] \forall 0 \leq k \leq n-2 )
+\]
+
+\textsc{Base Case}
+\[
+P(-1) = (\text{returns true and} arr[k] \leq arr[k+1] \forall 0 \leq k \leq -1)
+\]
+
+The loop iterates over an empty set so the code in the loop never executes so
+the program returns true.
+
+Hence $P(-1)$ holds.
+
+\textsc{Inductive case.}
+Assume $P(i)$ holds for some $-1 \leq i < n-1$
+
+\[
+P(i) = (\text{returns true and} arr[k] \leq arr[k+1] \forall 0 \leq k \leq i)
+\]
+
+for the (i+1)-st iteration arr[i] < arr[i+1] the statement in the loop will not execute
+so the program will return true since when the program is at the i-th iteration it returns true
+
+Hence $P(n)$ holds.
+
+\textsc{Case II.}
+The program returns false
+
+\[
+P(n) = (\text{returns false and} arr[k] > arr[k+1] for some 0 \leq k \leq n-2 )
+\]
+
+\textsc{Base Case}
+As in Case I $P(-1)$ holds for Case II holds
+
+\textsc{Inductive Case}
+Assume $P(i)$ holds for some $-1 \leq i < n-1$
+\[
+P(i) = (\text{returns false and} arr[k] > arr[k+1] for some 0 \leq k \leq i-1 )
+\]
+
+for the (i+1)-st iteration
+
+if $arr[i] \leq arr[i+1]$ then the program returns false
+
+if $arr[i] > arr[i+1]$ then Since $P(i)$ is true then there is a $k$ in $0 \leq k \leq$
+where $arr[k] > arr[k+1]$ so the program returns false.
+
+Hence $P(i+1)$ is true
