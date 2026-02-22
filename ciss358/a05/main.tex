@@ -1,0 +1,232 @@
+%-*-latex-*-
+\input{myassignmentpreamble}
+\input{ciss358}
+\input{yliow}
+\renewcommand\TITLE{Assignment 5}
+
+\begin{document}
+\topmatter
+
+\textsc{Objectives}
+\begin{itemize}
+  \li Solve problems using divide and conquer technique.
+  \li Prove results on asymptotics.
+  \li Compute asymptotics without using Master Theorem.
+\end{itemize}
+
+For programming problems such as Q1, put your code in
+\verb!a05q01/!.
+Some questions require writing proofs/computations.
+Enter then in \verb!q03.tex!, etc.
+
+%============================================================================== 
+\newpage
+Q1.
+Implement the closest pair of points algorithm.
+
+Here's a test case to fix output
+\begin{console}[commandchars=\\\{\}]
+\userinput{5 2 3 2 10 10 10 11 10 11 11}
+1 2 10 10 11 10 11 10 11 11
+\end{console}
+Explanation of inputs/outputs:
+\begin{enumerate}
+  \li \verb!5 2 3 2 10 10 10 11 10 11 11!:
+  There are \verb!5! points.
+  The points are $\verb!(2, 3)!$, $\verb!(2, 10)!$, etc.
+  \li \verb!1 2 10 10 11 10 11 10 11 11!:
+  The minimal distance is \verb!1!.
+  \verb!2! pairs of points are found.
+  The pairs of points are
+  $\verb!(10, 10)!-\verb!(11, 10)!$ and
+  $\verb!(11, 10)!-\verb!(11, 11)!$.
+  Sort the points by dictionary order.
+\end{enumerate}
+
+Your points should have \verb!double! coordinates.
+For computational geometry, it's common to have a \verb!struct! for
+points:
+\begin{console}
+struct Point
+{
+    double x, y;
+};
+\end{console}
+
+%============================================================================== 
+\newpage
+Q2.
+You’re consulting for an investment company.
+They have the following type of problem that they want to solve over and over.
+A typical instance of the problem is the following.
+They’re doing a simulation in which they look at $n$ consecutive days of a
+given stock, at some point in the past.
+The days are numbered $i = 0, 1, ..., n - 1$.
+For each day $i$, they have a price $p[i]$ per share for the stock on that day.
+Suppose during this time period, they wanted to buy shares on some day
+and sell all these shares on some later day.
+They want to know when should they have bought and when
+should they have sold in order to have made as much money as possible.
+If there was no way to make money during the $n$ days, your program
+should report it as well.
+
+For example, suppose $n = 3$, $p[0] = 9$, $p[1] = 1$, $p[2] = 5$.
+Then your program should print \verb!1 2!, i.e., \lq\lq buy on day 1,
+sell on day 2".
+Buying on day 1 and selling on day 2 means they
+would have made \$4 per share, the maximum possible for that period.
+Here's the test case to fix input/output:
+\begin{console}[commandchars=\\\{\}]
+\userinput{3 9 1 5}
+1 2
+\end{console}
+For the cases when they cannot make any profit, here's a test:  
+\begin{console}[commandchars=\\\{\}]
+\userinput{3 3 2 1}
+None
+\end{console}
+and another:
+\begin{console}[commandchars=\\\{\}]
+\userinput{3 1 1 1}
+None
+\end{console}
+
+
+%============================================================================== 
+\newpage
+Q3.
+Let $T(n)$ satisfy the following recurrence:
+\[
+T(n)
+= 7 T(n/2) + An^2 
+\]
+\begin{enumerate}[label=(\alph*)]
+\item
+  Let $n = 2^k$. Derive $T(n)$ as a sum of power series expressions
+  of $n$.
+  The expresssion should be of the form
+  \[
+  T(n) = [?] T(1) + [?] A
+  \]
+  The $[?]$ should be expressions in $n$ (not $k$).
+  Whenever possible, write the expression as $n^?$.
+  For instance it's OK to write
+  \[
+  T(n) = n^{\log_{100} {200}} T(1) + \frac{n^{\log_{111} 222} - 4}{3} A
+  \]
+\item
+  Write down a claim of the form $T(n) = O(g)$ where $g$ is deduced from (b).
+  Your $g$ should be of the form $n^\alpha$ or $n^\alpha \log^\beta n$. 
+\item
+  Prove your claim $T(n) = O(g)$ (from (b)) using induction.
+  Make sure you state your $N$ and $C$.
+\end{enumerate}
+
+For this question, refer to section \textsc{121.3 Exponentiation} from
+the notes on divide and conquer for examples
+on how to compute the power series to guess the big-O
+and examples on how to then prove the big-O is correct using induction.
+There are more computations that involves substitutions in order to guess
+the runtime in the chapter Asymptotics
+\textsc{123.10 Master theorem}. 
+
+(Obviously you should \textit{not} use the Master Theorem.)
+
+For (b), you have to pick of the two function [?] in
+\[
+T(n) = [?] T(1) + [?] A
+\]
+grows the fastest to be your $g(n)$.
+The [?] next to $A$ is usually simplified using the geometric sum
+formula. So it would be something like
+\[
+\frac{u^{v} - 1}{u - 1}
+\]
+Of course you can use
+\[
+\frac{u^v}{u - 1}
+\]
+as an upper found for this function and choose between this and
+$[?] T(1)$.
+For sure you want to write both of them as expressions involving $n$.
+Once you have identified which of the two is larger, you will get
+an plausible upper bound for $T(n)$.
+For instance say for $n = 2^k$, you finally get
+\[
+T(n) = n^{2.2} T(1) + \frac{1}{10} n^{3.3} A
+\]
+Then you suspect
+\begin{align*}
+  T(n)
+  &= n^{2.2} T(1) + \frac{1}{10} n^{3.3} A \\
+  &\leq n^{3.3} T(1) + \frac{1}{10} n^{3.3} A \\
+  &\leq \left( T(1) + \frac{1}{10} A \right) n^{3.3} \\
+\end{align*}
+for all $n$, and not just $n = 2^k$.
+Of course the next step is then to prove
+$T(n)$ is bounded above by $Cn^{3.3}$ asymptotically for some $C$.
+Note the next VERY important point:
+You need not choose $C$ to be $\left( T(1) + \frac{1}{10} A \right)$.
+In fact usually this won't work.
+Try it out on your own in a proof by induction using this as your $C$
+and you will see why it will most likely not work.
+Instead, you want to try using
+\begin{align*}
+  T(n)
+  &\leq \left( T(1) + [?] A \right) n^{3.3} \\
+\end{align*}
+where $[?]$ is \textit{larger} than $1/10$.
+For instance, maybe 
+\begin{align*}
+  T(n)
+  &\leq \left( T(1) + 2 A \right) n^{3.3} \\
+\end{align*}
+
+
+\SOLUTION
+
+\input{q03.tex}
+
+%============================================================================== 
+\newpage
+Q4.
+Prove the following.
+In the following $f, f_i, g, g_i, h$ are functions of $n \in \N$.
+You can assume they are nonzero. 
+Assume $c, c_i$ are constants, which you can assume are nonzero.
+\begin{enumerate}[label=(\alph*)]
+\item
+  $f = O(g), g = O(h) \implies f = O(h)$
+\item
+  $f_1 = O(g_1), f_2 = O(g_2)
+  \implies f_1 + f_2 = O ( \max(|g_1|, |g_2|) )$
+\item
+  $f_1 = O(g), f_2 = O(g) \implies f_1 + f_2 = O (g)$
+\item
+  $f = O(cg)$ $\iff$ $f = O(g)$
+\item
+  $cf = O(g)$ $\iff$ $f = O(g)$
+\end{enumerate}
+
+\SOLUTION
+
+\input{q04.tex}
+
+%===============================================================================
+\newpage
+Q5. 
+Let $p$ and $q$ be polynomials of degree $d$ and $e$ respectively.
+Prove the following.
+\begin{enumerate}
+\item[(a)] $p \sim q$
+  iff $d = e$ and leading coefficient of $p$ and $q$ are the same.
+\item[(b)] $p = \Theta(n^d)$
+\end{enumerate}
+You can assume facts about $\sim$ 
+(Proposition 123.3.6 -- Proposition 123.3.8).
+
+\SOLUTION
+
+\input{q05.tex}
+
+\end{document}
