@@ -1,0 +1,65 @@
+%-*-latex-*-
+\proof
+In all the proofs below, by definition of 2D vectors, let
+$\vec{u} = \langle a, b \rangle$,
+$\vec{v} = \langle c, d \rangle$, and
+$\vec{w} = \langle e, f \rangle$
+where $a, b, c, d, e, f \in F$.
+
+(a)
+We have
+\begin{align*}
+  \vec{u} + \vec{v}
+  &= \langle a, b \rangle + \langle c, d \rangle \\
+  &= \langle a + c, b + d \rangle & & \text{ by definition of vector addition} \\
+  &= \langle c + a, d + b\rangle & & \text{ by commutativity of $+$ of $F$} \\
+  &= \langle c, d \rangle + \langle a, b \rangle & & \text{ by definition of vector addition} \\
+  &= \vec{v} + \vec{u}  
+\end{align*}
+
+(b)
+We have
+\begin{align*}
+  (\vec{u} + \vec{v}) + \vec{w}
+  &=  \langle a + c, b + d \rangle + \langle e, f \rangle & & \text{ by definition of vector addition} \\
+  &=  \langle a + c + e, b + d + f \rangle & & \text{ by definition of vector addition} \\
+  &=  \langle a + (c + e), b + (d + f) \rangle & & \text{by associativity of $+$ of $F$} \\
+  &= \langle a, b \rangle + \langle c + e, d + f \rangle & & \text{by definition of vector addition} \\
+  &= \vec{u} + (\vec{v} + \vec{w})
+\end{align*}
+
+(c)
+We have
+\begin{align*}
+  \vec{u} + \vec{0}
+  &= \langle a, b \rangle + \langle 0, 0 \rangle \\
+  &= \langle a + 0, b + 0 \rangle & & \text{ by definition of vector addition} \\
+  &= \langle a, b \rangle & & \text{ by additive inverse of $+$ of $F$} \\
+  &= \langle 0 + a, 0 + b\rangle & & \text{ by commutativity of $+$ of $F$} \\
+  &= \langle 0, 0 \rangle + \langle a, b \rangle & & \text{ by definition of vector addition} \\
+  &= \vec{0} + \vec{u}  
+\end{align*}
+
+(d)
+We have
+\begin{align*}
+  \alpha \cdot (\vec{u} + \vec{v})
+  &= \alpha \cdot \langle a + c, b + d \rangle & & \text{ by definition of vector addition} \\
+  &= \langle \alpha \cdot (a + c), \alpha \cdot (b + d)\rangle & & \text{ by definition of scalar vector multiplication} \\
+  &= \langle \alpha \cdot a + \alpha \cdot c, \alpha \cdot b + \alpha \cdot d\rangle & & \text{ by distributive property of $\cdot$ of $F$} \\
+  &= \langle \alpha \cdot a, \alpha \cdot b \rangle + \langle \alpha \cdot c, \alpha \cdot d\rangle & & \text{ by definition of vector addition} \\
+  &= \alpha \cdot \vec{u} + \alpha \cdot \vec{v}  
+\end{align*}
+
+(e)
+
+(f)
+
+(g)
+
+(h)
+
+(i)
+
+(j)
+\qed
