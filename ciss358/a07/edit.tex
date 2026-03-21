@@ -1,0 +1,163 @@
+%-*-latex-*-
+In order to transform one source string of text \verb!x[1..m]!
+to a target string \verb!y[1..n]!,
+we can perform various transformation operations.
+Our goal is, given \verb!x! and \verb!y!,
+to produce a series of transformations that change \verb!x! to \verb!y!.
+We use an array \verb!z!
+-- assumed to be large enough to hold all the characters it will need -- to hold
+the intermediate results.
+Initially, \verb!z! is empty, and at termination, we should have
+\verb!z[j] = y[j]! for \verb!j = 1,2,...,n!.
+We maintain current indices \verb!i! into \verb!x! and \verb!j! into \verb!z!,
+and the operations are allowed to alter \verb!z! and these indices.
+Initially, \verb!i = j = 1!.
+We are required to examine every character in \verb!x! during the transformation, which
+means that at the end of the sequence of transformation operations, we must have
+\verb!i = m + 1!.
+
+We may choose from among six transformation operations:
+
+\begin{itemize}
+  
+\item
+  Copy a character from \verb!x! to \verb!z! by setting \verb!z[j] = x[i]! and then incrementing both \verb!i!
+  and \verb!j! . This operation examines \verb!x[i]!.
+
+\item
+  Replace a character from \verb!x! by another character \verb!c!, by setting \verb!z[j] = c!,
+  and then
+  incrementing both \verb!i! and \verb!j!.
+  This operation examines \verb!x[i]!.
+
+  \item
+    Delete a character from \verb!x! by incrementing \verb!i! but leaving \verb!j! alone.
+    This operation
+    examines \verb!x[i]!.
+
+  \item
+    Insert the character \verb!c! into \verb!z! by setting \verb!z[j] = c! and then incrementing \verb!j!, but
+    leaving \verb!i! alone.
+    This operation examines no characters of \verb!x!.
+
+  \item
+    Twiddle (i.e., exchange) the next two characters by copying them from \verb!x! to \verb!z! but
+    in the opposite order; we do so by setting \verb!z[j] = x[i + 1]! and \verb!z[j + 1] = x[i]!
+    and then setting \verb!i = i + 2! and \verb!j = j + 2!. This operation examines \verb!x[i]! 
+    and \verb!x[i + 1]!.
+
+  \item
+    Kill the remainder of \verb!x! by setting \verb!i = m + 1!.
+    This operation examines all characters
+    in \verb!x! that have not yet been examined.
+    This operation, if performed, must
+    be the final operation.
+  \end{itemize}
+
+  As an example, one way to transform the source string algorithm to the target
+  string \verb!altruistic! is to use the following sequence of operations, where the
+  underlined characters are \verb!x[i]! and \verb!z[j]! after the operation:
+
+
+  \begin{Verbatim}[frame=single,commandchars=\\\{\}]
+Operation         x            z
+initial strings   \underline{a}lgorithm    _
+copy              a\underline{l}gorithm    a_
+copy              al\underline{g}orithm    al_
+replace by t      alg\underline{o}rithm    alt_
+delete            algo\underline{r}ithm    alt_
+copy              algor\underline{i}thm    altr_
+insert u          algor\underline{i}thm    altru_
+insert i          algor\underline{i}thm    altrui_
+insert s          algor\underline{i}thm    altruis_
+twiddle           algorit\underline{h}m    altruisti_
+insert c          algorit\underline{h}m    altruistic_
+kill              algorithm_   altruistic_
+\end{Verbatim}
+
+Note that there are several other sequences of
+transformation operations that transform
+\verb!algorithm! to \verb!altruistic!.
+
+Each of the transformation operations has an associated cost.
+The cost of an operation depends on the specific application,
+but we assume that each operation's
+cost is a constant that is known to us.
+We also assume that the individual costs of
+the copy and replace operations are less than the combined costs of the delete and
+insert operations; otherwise, the copy and replace operations would not be used.
+The cost of a given sequence of transformation operations is the sum of the costs
+of the individual operations in the sequence. For the sequence above, the cost of
+transforming \verb!algorithm! to \verb!altruistic! is
+\begin{align*}
+  &3 \cdot \text{cost(copy)} + \text{cost(replace)} + \text{cost(delete)} + 4\cdot \text{cost(insert)} \\
+  &\hspace{1cm} + \text{cost(twiddle)} + \text{cost(kill)}
+\end{align*}
+
+\begin{tightlist}
+\item[(a)]
+Given two sequences \verb!x[1..m]! and \verb!y[1..n]!
+and set of transformation-operation
+costs, the \defterm{edit distance} from x to y is the cost of the least expensive operation
+sequence that transforms \verb!x! to \verb!y!. Describe a dynamic-programming algorithm
+that finds the edit distance from \verb!x[1..m]! to \verb!y[1..n]! and prints an optimal operation
+sequence. Analyze the running time and space requirements of your
+algorithm.
+Write a C++ program implementing your algorithm.
+Here is a sample execution:
+\begin{Verbatim}[frame=single,commandchars=\\\{\}]
+\underline{algorithm}
+\underline{altruistic}
+\underline{1 2 3 1 2 5}
+19
+initial strings   >algorithm    
+copy              a>lgorithm    a
+copy              al>gorithm    al
+replace by t      alg>orithm    alt
+delete            algo>rithm    alt
+copy              algor>ithm    altr
+insert u          algor>ithm    altru
+insert i          algor>ithm    altrui
+insert s          algor>ithm    altruis
+twiddle           algorit>hm    altruisti
+insert c          algorit>hm    altruistic
+kill              algorithm>    altruistic
+\end{Verbatim}
+The first two inputs are the strings \verb!x! and \verb!z!.
+The next 6 inputs (integers) are the cost of copy, replace, delete, insert, twiddle, kill.
+The first output is the cost.
+The rest describe the operations.
+\end{tightlist}
+
+The edit-distance problem generalizes the problem of aligning two DNA sequences.
+There are several
+methods for measuring the similarity of two DNA sequences by aligning them.
+One such method to align two sequences \verb!x! and \verb!y! consists of inserting spaces at
+arbitrary locations in the two sequences (including at either end) so that the resulting
+sequences \verb!x'! and \verb!y'! have the same length but do not have a space in the same
+position (i.e., for no position \verb!j! are both \verb!x'[j]! and \verb!y'[j]! a space.) Then we assign a
+\lq\lq score" to each position. Position \verb!j! receives a score as follows:
+\begin{tightlist}
+\li $+1$ if \verb!x'[j]! $=$ \verb!y'[j]! and neither is a space,
+\li $-1$ if \verb!x'[j]! $\neq$ \verb!y'[j]! and neither is a space,
+\li $-2$ if either \verb!x'[j]! or \verb!y'[j]! is a space.
+\end{tightlist}
+The score for the alignment is the sum of the scores of the individual positions. For
+example, given the sequences \verb!x! $=$ \verb!GATCGGCAT! and \verb!y! $=$ \verb!CAATGTGAATC!, one
+alignment is
+\newpage
+\begin{Verbatim}
+    G ATCG GCAT
+    CAAT GTGAATC
+    -*++*+*+-++*
+\end{Verbatim}
+A \verb!+! under a position indicates a score of $+1$ for that position, a \verb!-! indicates a score
+of $-1$, and a \verb!*! indicates a score of $-2$, so that this alignment has a total score of
+$6 \cdot 1 - 2 \cdot 1 - 4 \cdot 2 = -4$.
+
+\begin{tightlist}
+\item[(b)]
+Explain how to cast the problem of finding an optimal alignment as an edit
+distance problem using a subset of the transformation operations copy, replace,
+delete, insert, twiddle, and kill.
+\end{tightlist}

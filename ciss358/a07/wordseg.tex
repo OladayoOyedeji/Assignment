@@ -1,0 +1,28 @@
+%-*-latex-*-
+Write a C\texttt{++} program that solves the word segmentation problems.
+
+Your program must include a trie (that's in CISS350).
+A file (filename \verb!words.txt!)
+is provided for your dictionary.
+When loading each word in \verb!words.txt! into your dictionary,
+convert all uppercase to lowercase and then ignore any word with non \verb!a-z! characters.
+For instance ignore \verb!1st! if it's in the file.
+
+\textsc{Test 1}
+\begin{Verbatim}[frame=single,commandchars=\\\{\}]
+\userinput{words.txt}
+\userinput{toadsarenotfrogs}
+2
+to ads are not frogs
+toads are not frogs
+\end{Verbatim}
+The first input is the name of the file of words.
+The second input is the string to be segmented.
+This is followed by the number of segmentations
+and then all the segmentation; print a newline after a segmentation.
+If there are more than one segmentation, print all of them.
+
+(I mentioned before that all books on algorithms only
+print one solution for a DP problem.
+The word segmentation problem is an example of a DP problem where
+you really should compute all solutions.)

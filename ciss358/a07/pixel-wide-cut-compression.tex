@@ -1,0 +1,75 @@
+%-*-latex-*-
+Adobe is experimenting with a new image compression
+algorithm.
+A color picture is an
+$\verb!m! \times \verb!n!$
+array \verb!P[0..m-1][0..n-1]! of pixels,
+where each pixel specifies a triple of
+red, green, and blue intensities.
+To compress this picture slightly,
+one pixel from each of the \verb!m! rows is removed,
+so that the whole picture becomes one pixel
+narrower, i.e., the new array is going to be
+$\verb!m! \times \verb!(n - 1)!$.
+To avoid disturbing visual effects, pixels
+removed in two adjacent rows are in the same
+or adjacent columns.
+The collection of pixels removed is called a pixel-wide-cut.
+
+To decide which pixels should be removed,
+for each pixel
+\verb!P[i][j]!,
+an image processing algorithm
+has calculated a real--valued
+measure \verb!u[i][j]!,
+indicating how bad the image file will be
+if \verb!P[i][j]! is removed.
+The lower the \verb!u[i][j]!, the
+more similar the pixel is to its neighbors
+therefore the better it would be if \verb!P[i][j]! is removed.
+Removing \verb!P[i][j]! if \verb!u[i][j]! is high is bad.
+The sum total of all the \verb!u[i][j]! for the pixels
+\verb!P[i][j]!s in a pixel-wide-cut, is called the ugliness of that cut.
+The goal is to minimize the ugliness.
+
+(a)
+How many pixel-wide-cuts are there for an
+$\verb!m! \times \verb!n!$ image file?
+
+(b)
+Give an algorithm to find pixel-wide-cuts with the
+minimal ugliness.
+
+(c)
+Implement your algorithm in C\texttt{++}.
+
+(d)
+What is the runtime and space complexity
+of your algorithm? 
+Write this in the documentation of your main.cpp:
+\begin{Verbatim}[frame=single,fontsize=\small]
+// T(n) = O(?)
+// SPACE(n) = O(?)
+
+... your program ...
+\end{Verbatim}
+
+Here's a sample output:
+\begin{Verbatim}[frame=single,commandchars=\\\{\}]
+\userinput{3 4}
+\userinput{1.1 2.2 3.3 4.4}
+\userinput{2.2 3.3 4.4 2.2}
+\userinput{3.3 4.4 2.2 2.2}
+6.6
+((0,0), (1,0), (2,0))
+((0,0), (1,1), (2,2))
+\end{Verbatim}
+The first input is the number of rows,
+the second input is the number columns,
+this is followed by the values of \verb!d!.
+The first output, 6.6, is the minimal ugliness.
+This is followed by the pixel-wide-cuts achieving the minimal ugliness.
+In the above, there are two possible cuts:
+the first is to remove pixels (0,0), (1,0), (2,0)
+and the second is to remove pixels (0,0), (1,1), (2, 0).
+

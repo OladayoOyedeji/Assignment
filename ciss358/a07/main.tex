@@ -1,0 +1,81 @@
+%-*-latex-*-
+\input{myassignmentpreamble}
+\input{ciss358}
+\input{yliow}
+\renewcommand\TITLE{Assignment 7}
+
+\newcounter{qc}
+\newcommand\nextq{
+  \newpage
+  \addtocounter{qc}{1}
+  Q{\theqc}.
+  }
+
+
+\begin{document}
+\topmatter
+
+\textsc{Objectives.}
+
+\begin{enumerate}
+  \li To solve problems using the dynamic programming method.
+\end{enumerate}
+
+Feel free to discuss among yourselves.
+Implementations must be in C\texttt{++}.
+
+As always, if an execution is shown, it is to fix the input and output
+behavior of your program.
+The output need not be correct.
+
+In your main.cpp, at the top wrote down the asymptotic runtime
+and space complexity:
+\begin{Verbatim}[frame=single,fontsize=\small]
+// T(n) = O(?)
+// SPACE(n) = O(?)
+
+... your program ...
+\end{Verbatim}
+
+Create directory \verb!a07!.
+Put the latex files in \verb!a07!.
+For the program for \verb!a07/a07q02/!
+(main.cpp and other C\texttt{++} source files or data
+files), put files in \verb!a07q02!.
+Same for a07q03, etc.
+
+SPRING2024:
+For now, the only mathematical writing is in q01.tex.
+For the other questions, you only need to implement C\texttt{++} program.
+You are encouraged to try to write as many proofs for DP problems as you
+can -- the proof of optimal substructure. After doing half a dozen you'll see
+that they are all more or less the same.
+
+%==============================================================================
+\nextq
+\input{rod-cutting.tex}
+
+\SOLUTION
+\input{q01.tex}
+
+%==============================================================================
+\nextq
+\input{wordseg.tex}
+
+%==============================================================================
+\nextq
+\input{pixel-wide-cut-compression.tex}
+
+%==============================================================================
+\nextq
+\input{edit.tex}
+
+%==============================================================================
+\nextq
+\input{nsa-crypto.tex}
+
+%==============================================================================
+\nextq
+\input{dp-rooms.tex}
+
+\end{document}
