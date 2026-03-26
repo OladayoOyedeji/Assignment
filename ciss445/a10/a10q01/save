@@ -1,0 +1,30 @@
+Plus_Expr (Factor_Term (Id_Factor 3),  Plus_Expr (Factor_Term (Id_Factor 3), Term_Expr (Factor_Term (Id_Factor 5)))),
+
+
+
+
+                                       Plus_Expr
+                                          |
+                                         / \
+                                        /   \
+                                       /     \
+                              Factor_Term  Plus_Expr
+                                   |           |
+                                  /          /
+                                /    Factor_Term
+                            Id_Factor
+
+Plus_Expr
+   (Mul_Term
+     (Paren_Expr_Factor
+       (Plus_Expr
+         (Factor_Term (Id_Factor 3), Term_Expr (Factor_Term (Id_Factor 3)))),
+      Factor_Term (Id_Factor 3)),
+    Minus_Expr
+     (Factor_Term
+       (Paren_Expr_Factor
+         (Minus_Expr
+           (Factor_Term (Id_Factor 4),
+            Plus_Expr
+             (Factor_Term (Id_Factor 4), Term_Expr (Factor_Term (Id_Factor 6)))))),
+      Term_Expr (Factor_Term (Id_Factor 8))))
