@@ -1,6 +1,65 @@
-`include "twoscomplement.v"
-`include "MUX.v"
-`include "adder.v"
+module twoscomplement(b, out, clock);
+   input [31:0]  b;
+   input         clock;
+   output [31:0] out;
+
+   reg [31:0]    out;
+
+   integer       i;
+   reg           carry;
+   always @ (posedge clock) begin
+      carry = 1;
+      for (i = 0; i < 32; i = i + 1) begin
+         out[i] = !b[i] ^ carry;
+         
+         carry = carry & !b[i];
+      end
+   end
+   
+endmodule // twoscomplement
+
+module adder(a, b, sum, clock);
+   input [31:0] a;
+   input [31:0] b;
+
+   input        clock;
+
+   output [31:0] sum;
+
+   reg [31:0]    sum;
+
+   integer       i;
+   reg           carry;
+
+   always @ (posedge clock) begin
+      carry = 0;
+      
+      for (i = 0; i < 32; i = i + 1) begin
+         sum[i] = (a[i] ^ b[i]) ^ carry;
+         carry = (a[i] & b[i]) | ((a[i] ^ b[i]) & carry);
+         // $monitor("carry=%b",
+         //          carry);
+      end
+   end
+endmodule // adder
+
+module mux(a,b,s,out,clock);
+   input [31:0]  a;
+   input [31:0]  b;
+   input         s;
+   input         clock;
+   output [31:0] out;
+
+   reg [31:0]    out;
+   integer       i;
+
+   always @ (posedge clock) begin
+      out = 0;
+      for (i = 0; i < 32; i = i + 1) begin
+         out[i] = (a[i] & !s) | (b[i] & s);
+      end
+   end
+endmodule // mux
 
 module smallALU(a, b, op, result, clock);
    input [31:0]  a;
@@ -32,28 +91,28 @@ module smallALU_tb;
 
    // monitor outputs
    initial begin
-      $monitor("time=%0t | a=%b b=%b op=%b sum=%b clock=%b",
+      $monitor("time=%0t | a=%d b=%d op=%d sum=%d clock=%b",
                $time, a, b, op, sum, clock);
       clock = 0;
 
-      @(posedge clock);
-      a = 10; b = 5; op = 1;   // addition
+      #5 a = 50;
+      #5 b = 100; 
+      #5 op = 0;   // addition
+      
+      // #5 a = 10;
+      // #5 b = 5; op = 0;   // subtraction
 
-      @(posedge clock);
-      a = 10; b = 5; op = 0;   // subtraction
+      // @(posedge clock);
+      // a = 5; b = 10; op = 1;   // negative result
 
-      @(posedge clock);
-      a = 5; b = 10; op = 1;   // negative result
+      // @(posedge clock);
+      // a = 100; b = 50; op = 0; // addition
 
-      @(posedge clock);
-      a = 100; b = 50; op = 0; // addition
+      // @(posedge clock);
+      // a = 100; b = 50; op = 1; // subtraction
+      
 
-      @(posedge clock);
-      a = 100; b = 50; op = 1; // subtraction
-
-      @(posedge clock);
-
-      $finish;
+      #12 $finish;
    end
    
    always begin
