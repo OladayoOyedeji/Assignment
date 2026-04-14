@@ -1,18 +1,19 @@
 module Decoder(code, decoded, clock);
-   input [4:0]   code;
+   input [5:0]   code;
    input         clock;
-   output [31:0] decoded;
-   reg [31:0]    decoded;
+   output [63:0] decoded;
+   reg [63:0]    decoded;
    integer       i;
 
    always @ (posedge clock) begin
-      for (i = 0; i < 32; i = i + 1) begin
+      for (i = 0; i < 64; i = i + 1) begin
          decoded[i] <= (
                         (((i % 2) && code[0]) || (!(i % 2) && !code[0]))
-                     && ((((i/2) % 2) && code[1]) || (!((i/2) % 2) && !code[1]))
-                     && ((((i/4) % 2) && code[2]) || (!((i/4) % 2) && !code[2]))
-                     && ((((i/8) % 2) && code[3]) || (!((i/8) % 2) && !code[3]))
-                     && ((((i/16) % 2) && code[4]) || (!((i/16) % 2) && !code[4]))
+                        && ((((i/2) % 2) && code[1]) || (!((i/2) % 2) && !code[1]))
+                        && ((((i/4) % 2) && code[2]) || (!((i/4) % 2) && !code[2]))
+                        && ((((i/8) % 2) && code[3]) || (!((i/8) % 2) && !code[3]))
+                        && ((((i/16) % 2) && code[4]) || (!((i/16) % 2) && !code[4]))
+                        && ((((i/32) % 2) && code[5]) || (!((i/32) % 2) && !code[5]))
                         );
       end
    end // always @ (posedge clock)
@@ -76,6 +77,46 @@ module Datapath(instruction, RegDst, RegWrite, writeData, clock);
    
 
 endmodule // control
+
+module SRAM(address1, address2, dout, clock);
+   input [5:0]  address1;
+   input [4:0]  address2;
+   input        clock;
+   wire [63:0]  decoded;
+   output [7:0] dout;
+
+   integer      i;
+   integer      j;
+   wire [31:0]  out;
+   wire [7:0]   seg;
+   
+
+   // 64 x 32bit array?
+   reg [31:0]   memory [7:0][63:0];
+
+   dec Decoder(
+               .code(address1),
+               .decoded(decoded),
+               .clock(clock)
+               );
+
+   for (i = 0; i < 8; i = i + 1) begin
+      
+      for (j = 0; j < 64; j = j + 1) begin
+         out <= out | ({32{decoded[j]}} & memory[i][j]);
+      end
+      mux mux(.a(out)
+              .s(address2),
+              .out(dout[i]),
+              .clock(clock)
+              );
+      
+   end
+   
+endmodule // SRAM
+
+module memoryInstruction(PC);
+   
 
 module testDatapath(instruction, clock);
    reg [31:0] instruction;
