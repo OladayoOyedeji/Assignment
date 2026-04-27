@@ -19,115 +19,90 @@ module Decoder(code, decoded, clock);
    end // always @ (posedge clock)
 endmodule
 
-module Registerfile(read1, read2, write_register, 
-                    write_data, read_data_1,
-                    read_data_2, reg_write, clock);
-   input [4:0] read1, read2, write_register;
+module SRAM(address, dout, din, writeEnable, 
+            readEnable, clock);
+   input [31:0]      address;
+   input [31:0]      din;          // Added from your port list
+   input             writeEnable;  // Added from your port list
+   input             readEnable;   // Added from your port list
+   input             clock;
+   output reg [31:0] dout;      // Must be 'reg' because it's assigned in an always block
 
-   input [31:0] write_data;
-   input        reg_write, clock;
-   output [31:0] read_data_1, read_data_2;
-   reg [31:0]    RF [31:0];
+   // 64 x 32-bit array
+   reg [31:0]        memory [0:63];
 
-   assign read_data_1 = RF[read1];
-   assign read_data_2 = RF[read2];
-
-   always begin
-        @(posedge clock) if (reg_write) RF[write_reg] <= write_data;
+   // 1. Load the memory from a file at start-up
+   initial begin
+      $readmemb("test.mem", memory);
    end
-endmodule // Registerfile
 
-module Datapath(instruction, RegDst, RegWrite, writeData, clock);
-   input [31:0] instruction;
-   input [31:0] writeData;
-
-   input        RegDst;
-   input        RegWrite;
-   input        clock;
-   
-   
-   wire [4:0]   readRegister1;
-
-   wire [4:0]   readRegsister2;
-   wire [4:0]   writeRegister;
-   wire [31:0]  data1;
-   wire [31:0]  data2;
-   
-   assign readRegister1 = instruction[25:21]; // rs
-   assign readRegister2 = instruction[20:16]; // rt
-   
-   Mux mux(
-           .a(readRegister2), 
-           .b(instruction[15:11]), 
-           .s(RegDist),
-           .out(writeRegister),
-           .clock(clock)
-           );
-
-   Reg Registerfile(
-                    .read1(readRegister1),
-                    .read2(readRegister2),
-                    .write_register(writeRegister),
-                    .wrie_data(writeData),
-                    .read_data1(data1),
-                    .read_data2(data2),
-                    .reg_write(RegWrite),
-                    .clock(clock)
-                    );
-   
-
-endmodule // control
-
-module SRAM(address1, address2, dout, clock);
-   input [5:0]  address1;
-   input [4:0]  address2;
-   input        clock;
-   wire [63:0]  decoded;
-   output [7:0] dout;
-
-   integer      i;
-   integer      j;
-   wire [31:0]  out;
-   wire [7:0]   seg;
-   
-
-   // 64 x 32bit array?
-   reg [31:0]   memory [7:0][63:0];
-
-   dec Decoder(
-               .code(address1),
-               .decoded(decoded),
-               .clock(clock)
-               );
-
-   for (i = 0; i < 8; i = i + 1) begin
-      
-      for (j = 0; j < 64; j = j + 1) begin
-         out <= out | ({32{decoded[j]}} & memory[i][j]);
+   // 2. Synchronous Read/Write Logic
+   always @(posedge clock) begin
+      if (writeEnable) begin
+         memory[address[5:0]] <= din; // Use lower 6 bits for 64 entries
       end
-      mux mux(.a(out)
-              .s(address2),
-              .out(dout[i]),
-              .clock(clock)
-              );
       
+      if (readEnable) begin
+         dout <= memory[address[5:0]];
+      end
    end
-   
 endmodule // SRAM
 
-module memoryInstruction(PC);
+module mem(PC, out, clock);
+   input  [31:0] PC;
+   input         clock; // Changed from int to input
+   output [31:0] out;
    
+   wire [5:0]    word_index = PC[7:2];
+   // Instantiate the SRAM module
+   // We map PC to address and out to dout
+   SRAM instruction_storage (
+      .address({26'b0, word_index}),
+      .dout(out),
+      .din(32'b0),          // Instruction memory is usually read-only
+      .writeEnable(1'b0),   // Disable writing
+      .readEnable(1'b1),    // Always enable reading
+      .clock(clock)
+   );
 
-module testDatapath(instruction, clock);
-   reg [31:0] instruction;
+endmodule; // mem
+
+module testMem;
+   // 1. Signals
+   reg [31:0] PC;
    reg        clock;
+   wire [31:0] out;
 
-   wire       RegDst;
-   wire [31:0] RegWrite;
-   wire [31:0]  writeData;
+   // 2. Instantiate the wrapper
+   mem uut (
+      .PC(PC),
+      .clock(clock),
+      .out(out)
+   );
 
+   // 3. Clock Generation (10 unit period)
+   always #5 clock = ~clock;
+
+   // 4. Stimulus
    initial begin
-      $monitor("read data=%b"
-               readdata)
-   
+      // Initialize
+      clock = 0;
+      PC = 0;
+
+      // Monitor changes
+      $monitor("Time=%0t | PC=%d | Instruction(out)=%b", $time, PC, out);
+
+      // Wait for initial load
+      #10;
+
+      // Cycle through addresses
+      // Assuming PC increments by 1 for your 64-word SRAM
+      repeat (5) begin
+         #10 PC = PC + 4;
+      end
+
+      #20 $finish;
+   end
+endmodule // testMem
+
    
