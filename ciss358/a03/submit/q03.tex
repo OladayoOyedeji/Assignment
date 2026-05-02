@@ -1,0 +1,56 @@
+%-*-latex-*-
+
+\begin{console}
+ALGORITHM: SELECTION_PASS
+INPUTS: x - array,
+
+minvalue = x[0]
+minindex = 0
+
+for i = 1, 2,..., n-1:
+    if x[i] < minvalue:
+        minvalue = x[i]
+        minindex = i
+if minindex != 0:
+    swap (x[0], x[minindex])
+\end{console}
+
+\begin{tightlist}
+\item[a.] Show that $x[0]$ is the minimum value of $x[0 \cdots n-1]$
+\item[b.] Show that $x[0 \cdots n]$ are the same as the values of $x[0 \cdots n-1]$ before the loop
+\item[c.] $x[x]$ is unchanged if $k$ is not in $x[0 \cdots n-1]$
+\end{tightlist}
+
+(a.)
+\textsc{Base Case} $P(0)$ the minimum of $x[0 \cdots 0]$
+
+\textsc{Inductive Case} Let $0 \leq i \leq n-1$ suppose $P(i)$ holds
+
+Consider the $i+1$ st iteration
+
+\textsc{Case I} $x[i] < $minvalue there is a swap
+
+so $x[i]$ is the minimum value
+
+\textsc{Case II} $x[i] \geq$ minvalue there is no swap, so $x[minvalue]$
+
+is the minvalue and there is a swap between the minvalue and $x[0]$ so $x[0]$
+
+holds the minvalue
+
+Hence $P(i+1)$ holds
+
+(b.) for $-1 \leq i < n$ Let $Q(i)$  be the invariant
+
+$Q(i) = (x[0 \cdots i-1])$ is a permutation of $x[0 \cdots i-1]$ at the begining
+
+of the algorithm and $x[k]$ is unchanged for $k \notin x[0 \cdots i-1])$
+
+\textsc{Base Case}
+Since only one value and nothing is done on the loop on the array $x[0 \cdots 0]$
+
+Hence $Q(0)$ holds
+
+\textsc{Inductive Case} Suppose $Q(i)$ at $(i+1)$st operation 
+
+\qed

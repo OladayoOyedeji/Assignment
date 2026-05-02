@@ -1,0 +1,87 @@
+%-*-latex-*-
+NSA is designing a new steganographic system to hide information.
+Here's how it works.
+
+Suppose agent Bob wants to send a message \verb!mad! to Alice
+and Eve the rogue agent is eavesdropping.
+Bob appends the characters of the message, except the last,
+to the message but in the reverse order to get \verb!madam!.
+Note that this is a palindrome with odd length.
+He then inserts a huge number of characters into the string to further
+obfuscate the message.
+Here's an example:
+\[
+  \texttt{hieve\underline{\textred{m}}yh\underline{\textred{a}}mburger\underline{\textred{d}}oesnott\underline{\textred{a}}stegoodwith\underline{\textred{m}}armalade}
+\]
+The problem is Bob might accidentally create many subsequences in
+this obfuscated message.
+So Bob and Alice has agreed that if there is more than one
+possible subsequence, the longest one is the correct palindrome.
+NSA has asked you to write a program  
+to find the longest odd-length palindromic subsequence
+of a given input string (hopefully there's only one).
+Of course it's possible that there are more than one longest odd-length
+palindrome subsequence.
+In that case, your program will be helpful in warning Bob that his obfuscation is ambiguous.
+
+(a) For a string of length $n$, how many subsequences are there altogether?
+(Using brute force, you can then check each subsequence to see if the
+length is odd and is it is a palindrome. Of course you know by now that brute force is a bad idea.)
+
+(b) Define a suitable measure for optimization (a length function)
+in order to solve this problem.
+For instance if the input is \verb!x[0..n-1]!, maybe
+you want the function $L(\verb!i!)$ to be the length of the longest palindromic
+subsequence of \verb!x[0..i]!, or maybe
+you want the length of the longest palindromic
+subsequence of \verb!x[i..n-1]!
+or maybe you want
+the function is $L(\verb!i!, \verb!j!)$ to be the length of the longest
+palindomic subsequence of \verb!x[i..j]!.
+Or maybe you want something that is completely different (and more
+crazy than what I can think of.)
+
+(c)
+Find a recursion on your function in (b).
+Implement a top-down DP solution.
+
+(d)
+Find a bottom-up DP solution to our problem
+and implement it in C\texttt{++}.
+Here's a sample run:
+\begin{Verbatim}[frame=single,commandchars=\\\{\}]
+\userinput{whatacharacter}
+("carac", (5, 7, 8, 9, 10))
+\end{Verbatim}
+There is only one input. (Bob wanted to say \verb!car!, so the palindrome is \verb!carac!.)
+The output is the longest odd-length palindromic subsequence followed by the
+indices of this subsequence.
+If there are more than one longest palindromic subsequences,
+print them on separate lines.
+For instance in the above, there's another output:
+\begin{Verbatim}[frame=single,commandchars=\\\{\}]
+\userinput{whatacharacter}
+("carac", (5, 7, 8, 9, 10))
+("hatah", (1, 2, 3, 4, 6))
+\end{Verbatim}
+(Note that for this part, you should print the longest.
+\verb!tcaract! is actually longer. The above test case
+is only to fix the input-output format. Outputs shown above need not be correct.)
+
+(e) What is the runtime and space complexity of your algorithm?
+Write this in the documentation of your main.cpp:
+\begin{Verbatim}[frame=single,fontsize=\small]
+// T(n) = O(?)
+// SPACE(n) = O(?)
+
+... your program ...
+\end{Verbatim}
+
+(f) Finally using the above program
+write another program that prints all odd-length palindromic subsequence
+with length of at least 3.
+Organized the output in ascending order by length.
+For string with the same length, organize them by dictionary order.
+
+\textsc{Note.}
+Assume characters in string are in lowercase.

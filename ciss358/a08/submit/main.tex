@@ -1,0 +1,54 @@
+%-*-latex-*-
+\input{myassignmentpreamble}
+\input{ciss358}
+\input{yliow}
+\renewcommand\TITLE{Assignment 8}
+
+\newcounter{qc}
+\newcommand\nextq{
+  \addtocounter{qc}{1}
+  Q{\theqc}.
+  }
+
+\begin{document}
+\topmatter
+
+\textsc{Objectives}
+\begin{enumerate}[nosep]
+\item Solve problems using greedy paradigm.
+\item Prove correctness of greedy algorithm.
+\end{enumerate}
+
+Create directory \verb!a08/!.
+Put the latex files in a08.
+For the program for a08q01, put all the relevant files in \verb!a08/a08q01/!
+
+%==============================================================================
+\newpage
+\nextq
+\input{dijkstra-shortest-path-problem.tex}
+
+%==============================================================================
+\newpage
+\nextq
+\input{library-problem.tex}
+
+%==============================================================================
+\newpage
+\nextq
+\input{license-problem.tex}
+
+(Typeset your answer in \verb!q03.tex!.
+
+\input{q03.tex}
+
+%==============================================================================
+\newpage
+\nextq
+\input{prim-proof.tex}
+
+(Typeset your answer in \verb!q04.tex!.
+
+\input{q04.tex}
+
+\end{document}

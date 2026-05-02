@@ -1,0 +1,48 @@
+\textsc{[Greedy]}
+\\
+Implement Dijkstra's shortest path algorithm in C\texttt{++}.
+Use adjacency list to describe the graph.
+Assume the vertices are named 0, 1, 2, ..., $n - 1$
+where $n$ is the number of nodes.
+You also need to keep track on the \lq\lq distance from starting node to
+vertex $i$", $d(i)$. You can use an array (you can use
+$-1$ for infinity or a number larger than then longest possible path).
+You also need to keep track on the weight from $i$ to $j$, $w(i,j)$.
+You can either use a 2D array or a hashtable.
+Ether one will achieve the runtime I mentioned in class (and in the notes),
+although if the graph is huge and sparse a hashtable is probably better.
+And for computing the solution, for each node $n$, you
+also need to keep track of
+\lq\lq current best previous node of $i$ to go back to the starting node",
+$\operatorname{prev}(i)$.
+You can use an array for $\operatorname{prev}$.
+Note that you will need to use a modified minheap, i.e.,
+the minheap comes with a hashtable that keeps track on the values in the
+minheap.
+
+Here's a sample execution:
+\begin{Verbatim}[frame=single,commandchars=\\\{\}]
+\userinput{4 5}
+\userinput{0 1 10}
+\userinput{0 2 11}
+\userinput{1 2 200}
+\userinput{1 3 100}
+\userinput{2 3 12}
+\userinput{0 3}
+0 2 3 23
+\end{Verbatim}
+The first line of input \verb!4 5! is the number of nodes and number of edges.
+In this case there are 4 nodes. They are named 0, 1, 2, 3.
+And there are 5 edges.
+The next 5 lines of output describes the weights in this graph.
+For instance
+\verb!0 1 10! says that the edge from node 0 to node 1 has weight 10,
+\verb!0 2 11! says that the edge from node 0 to node 2 has weight 11, etc.
+The graph is simple and undirected.
+So the weight going from node 0 to node 1 is the same as the weight going from
+node 1 to node 0.
+The last line of input \verb!0 3! specifies the starting and ending node
+for the shortest path.
+The output
+\verb!0 2 3 23! says that a shortest path is from 0 to 2 to 3
+with path cost (i.e. sum of weights) of  $11 + 12 = 23$.

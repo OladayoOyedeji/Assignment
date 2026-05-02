@@ -1,0 +1,66 @@
+\input{myassignmentpreamble}
+\input{ciss358}
+\input{yliow}
+\renewcommand\TITLE{Final Exam}
+
+\begin{document}
+\topmatter
+
+Q1.
+Here's the skyline problem:
+\url{https://uva.onlinejudge.org/external/1/p105.pdf}.
+Write a complete answer to the problem.
+You may use any resource.
+It's OK to study a solution.
+But your must make sure that you write up your own solution.
+
+
+\newpage
+Q2.
+Suppose you play two-player game where there are two piles of 10 stones.
+Let's call them pile $A$ and pile $B$.
+Each player take turns to remove stones.
+A player can
+\begin{enumerate}
+  \li Remove one stone from pile $A$.
+  \li Remove two stones from pile $B$.
+  \li Remove one stone from pile $B$.
+  \li Move one stone from $A$ to $B$.
+\end{enumerate}
+Is there a winning strategy for the first or the second player?
+If there's one, explain it clearly.
+If there isn't explain why.
+
+\newpage
+Q3.
+Suppose you are given an $n\times n$
+checkerboard with some of the squares deleted.
+You have a
+large set of dominos, just the right size to cover two squares of the
+checkerboard.
+Describe
+and analyze an algorithm to determine whether one tile the board with
+dominos -- each
+domino must cover exactly two undeleted squares,
+and each undeleted square must be
+covered by exactly one domino.
+
+\begin{center}
+\includegraphics[width=4in]{dominos.JPG}
+\end{center}
+
+Your input is a two-dimensional array
+\texttt{deleted[1..n, 1..n]} of bits, where
+\texttt{deleted[i, j] = true}
+if and only if the square in row \texttt{i} and
+column \texttt{j} has been deleted.
+Your output is a single
+bit.
+You do not have to compute the actual placement of dominos.
+For example, for the
+board shown above, your algorithm should return \texttt{true}.
+
+
+
+\end{document}
+

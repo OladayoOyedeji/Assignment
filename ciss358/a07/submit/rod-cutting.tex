@@ -1,0 +1,19 @@
+Prove that the rod cutting problem has the optimal substructure property.
+Here the statement of the problem:x
+
+\textsc{Rod cutting problem 1}.
+Let $P[1..k]$ (\lq\lq prices'') be an array of positive values $>0$.
+($P[i]$ is the price of a rod of length $i$. With this notation, you can
+extend the array $P$ to index $0$ by
+$P[0] = 0$ since the price of a rod of length 0 has to be 0.)
+Given an integer $n > 0$, find $\ell_0, \ell_1, ..., \ell_{p-1}$
+(the lengths of every cut; here, there are $p$ pipes) such that
+\[
+n = \ell_0 + \ell_1 + \cdots + \ell_{p - 1}, \,\,\,\,\,
+1 \leq \ell_i \leq k
+\]
+and
+\[
+\sum_{i=0}^{p-1} P[\ell_i]
+\]
+is maximal.

@@ -1,0 +1,40 @@
+%-*-latex-*-
+
+Let $P(e)$ be
+
+\[
+P(e) = (ret = x^e  0 < e, \text{for some } x)
+\]
+
+\textsc{Base Case} Let $P(0)$ be the invariant
+
+Before the loop start $ret = 1$ and $x^0 = 1$ Hence $P(0)$ holds
+
+\textsc{Inductive Case} Assume $P(i)$ holds which means
+\[
+P(i) = (ret = x^i  0 < i, \text{for some } x)
+\]
+
+Consider $P(i+1)$
+
+\textsc{Case I}
+if $(i+1) \% 2 == 1, ret = x$
+
+$\floor{\frac{i+1}{2}} = i/2, x = x * x$
+
+from $P(i)$ we know $P(\frac{i}{2})$ holds because $\frac{i}{2} < i$ for some $x^2$
+
+So $ret =  x * (x^2)^{\frac{i}{2}} = x * x^i = x^{i+1}$
+
+\textsc{Case II}
+if $(i+1) \% 2 == 0, ret = 1$
+
+$\floor{\frac{i+1}{2}} = \frac{i+1}{2}, x = x * x$
+
+from $P(i)$ we know $P(\frac{i+1}{2})$ holds because $\frac{i+1}{2} < i$ for some $x^2$
+
+$ret = 1 * (x^2)^{\frac{i+1}{2}} = 1 * x^{i+1} = x^{i+1}$
+
+Hence by Weak Induction $P(e)$ holds
+
+\qed

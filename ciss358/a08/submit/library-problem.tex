@@ -1,0 +1,90 @@
+\textsc{[Greedy]}
+\\
+You're working on a
+long research paper, and your draconian library will only allow you to have
+$k$ books checked out at once. 
+You know that you’ll need more
+than this over the course of working on the paper, but at any point in time,
+you'd like to have ready access to the $k$ 
+books that are most relevant at
+that time. How should you decide which books to check out, and when should
+you return some in exchange for others, to minimize the number of times you
+have to exchange a book at the library?
+
+As a concrete example, 
+suppose $k = 2$ (i.e., you can only 
+check out two books at a time.
+Suppose you need to refer to 
+three books $a, b, c$.
+Furthermore, suppose you need to 
+use these books in this order:
+\[
+a,b,c,b,c,a,b
+\]
+and suppose that you have books $a$ on day 0
+and $b$ on day 1.
+Then on the day 2, since you need book $c$,
+you need to return either book $a$ or book $b$
+in order to check out book $c$.
+Suppose you return book $a$.
+Therefore on day 2, you have books $b$ and $c$.
+On day 3, you need book $b$, which you do have.
+On day 4, you need book $c$, which is
+already checked out.
+So on day 3 and 4, you do not need to return
+any books.
+But on day 5, you need book $a$.
+This means that you need to return either
+book $b$ or $c$.
+Etc.
+The goal is (obviously) to prevent trips to the library.
+
+Design an algorithm that minimizes library trips.
+Implement your algorithm in C\texttt{++}.
+Here's a sample execution:
+\begin{Verbatim}[frame=single,commandchars=\\\{\},fontsize=\footnotesize]
+\userinput{2 3 7 0 1 2 1 2 0 1}
+1. 0->2
+2.
+3.
+4. 2->0
+5.
+\end{Verbatim}
+The first number, i.e., $2$, in the input is the number of books you can check out.
+The second number, i.s., $3$, is the number of books you need to use.
+The third number, i.e., $7$, is the number of days you will be doing research.
+The rest, \verb!0 1 2 1 2 0 1!, is of (7) accesses to the books.
+Note that the books are numbered 0, 1, 2 if there are 3 books.
+The rest describes visits to the library.
+At the beginning, you already have books 0 and 1.
+So the output \verb!1. 0->2! says that you return book 0 to check out 2.
+\verb!2.! says that you do not visit the library.
+This is followed by \verb!3.! which again says that you do not visit the library.
+\verb!4. 2->1! says that you visit the library to return book 2 in order to check out book 1.
+Etc.
+
+
+[\textsc{Aside}. This problem occurs in every situation
+where you need to work with more data than what a resource can handle
+at one time -- i.e., there's a memory hierarchy.
+In the above library example, you can only hold two books at one time.
+The library can hold more.
+In the case of computer architecture, main memory and hard drive.
+It's better to have data in main memory
+because that's faster than hard drive. But the problem is that
+your computer has a lot less capacity in main memory than the hard drive.
+For modern computer architecture, there's on-chip cache memory which is
+faster than main memory.
+Likewise, a database system stores pages of data in main memory
+to create a buffer pool and attempts to predict what pages of data stored
+in the hard drive in order to prevent replacing buffer pool pages with
+new pages from the hard drive.
+In the above library example, when you return a book, say $a$, already checked out
+for a new book, say $c$, we say that your algorithm is \defterm{evicting} $a$.
+Sometimes $a$ is also called a \defterm{victim}.
+The overall algorithm that exchanging a piece of data in cache with another
+is frequently called a \defterm{replacement algorithm}.
+Note that for our library problem, it assumes that you know ahead of time
+what book will be needed in the future. In real life, frequently
+only an approximate access pattern is known, i.e., the access
+pattern is given in terms of probabilistic measures.]

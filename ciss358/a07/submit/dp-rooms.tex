@@ -1,0 +1,274 @@
+%-*-latex-*-
+Polygonia is a high-end avant-garde architecture company.
+Some of their designs are based on convex polygons.
+For instance here's a convex polygon
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+p0 = (0,0)
+p1 = (3,-1)
+p2 = (4,2)
+p3 = (2,3)
+p4 = (-1,1)
+p += Line(points=[p0,p1,p2,p3,p4,p0])
+print(p)
+\end{python}
+
+\lq\lq Convex" means if you join two points of the polygon with a line segment,
+the line segment is inside the polygon.
+For course a fancy mansion has to be divided into rooms: bedrooms, banquet rooms,
+study rooms, libraries, swimming pool rooms, cinema rooms, etc.
+Polygonia is starting a new line of designs where
+the rooms are created by building interior walls (walls inside the building)
+joining vertices of a polygonal
+building.
+Here's an example where there are two interior walls for the above building:
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+p0 = (0,0)
+p1 = (3,-1)
+p2 = (4,2)
+p3 = (2,3)
+p4 = (-1,1)
+p += Line(points=[p0,p1,p2,p3,p4,p0])
+p += Line(points=[p0,p3], linecolor='red')
+p += Line(points=[p0,p2], linecolor='red')
+print(p)
+\end{python}
+
+and here's another:
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+p0 = (0,0)
+p1 = (3,-1)
+p2 = (4,2)
+p3 = (2,3)
+p4 = (-1,1)
+p += Line(points=[p0,p1,p2,p3,p4,p0])
+p += Line(points=[p1,p4], linecolor='red')
+p += Line(points=[p1,p3], linecolor='red')
+print(p)
+\end{python}
+
+Here's another wall design for a more complicated building:
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+p0 = (0,0)
+p1 = (3,-1)
+p2 = (4.5,0.8)
+p3 = (4,2)
+p4 = (2,3)
+p5 = (0.5,2.5)
+p6 = (-1,1)
+p += Line(points=[p0,p1,p2,p3,p4,p5,p6,p0])
+p += Line(points=[p1,p4], linecolor='red')
+p += Line(points=[p1,p3], linecolor='red')
+p += Line(points=[p4,p6], linecolor='red')
+p += Line(points=[p4,p0], linecolor='red')
+print(p)
+\end{python}
+
+In other words a design of interior walls is a collection of non--intersecting
+line segments in the polygon building
+such that each line segment joins two vertices of the polygon
+and
+the resulting rooms must be triangles.
+The cost of interior walls is the sum of the lengths of the line segments
+in the architectural design (think Pythagorus theorem).
+The goal is to find the minimal cost for the interior
+walls when given the vertices of the building.
+
+(a) For a polygonal build with $n$ vertices,
+how many different collections of interior wall design are there?
+(SOLUTION PROVIDED.)
+
+(b)
+Find a suitable recursion that helps solve this problem.
+(You have to find a function to optimize. Make sure you state the function clearly.)
+
+(c)
+Find and implement in C\texttt{++} a bottom-up DP solution to the problem.
+Here's a sample execution
+\begin{Verbatim}[frame=single,commandchars=\~\!\@]
+~userinput!5@
+~userinput!0.0 0.0 3.1 -1.0 4.2 2.0 2.1 3.1 -1.0 1.1@
+12.7
+{{0,2}, {0,3}}
+\end{Verbatim}
+The first input is the number of vertices of the polygon.
+This is followed by the $(x,y)$--coordinates of the points listed in
+counter-clockwise direction.
+In the above, the polygonal is made up of points
+$p_0 = (0.0, 0.0)$,
+$p_1 = (3.1, -1.0)$,
+$p_2 = (4.2, 2.0)$,
+$p_3 = (2.1, 3.1)$, and
+$p_4 = (-1.0, 1.1)$.
+The output is 12.7 (the minimal cost of among all possible wall designs).
+This is followed by the optimal wall design.
+For instance in the above the first line wall is
+\verb!{0,2}!, meaning the line segment $p_0, p_2$
+and the second line segment is \verb!{0,3}! meaning $p_0, p_3$.
+If there are two possible optimal wall designs, you must list all of them,
+one complete wall design on each line.
+
+(d) What is the runtime and the space complexity of your algorithm?
+Write in the documentation of your main.cpp:
+\begin{Verbatim}[frame=single,fontsize=\small]
+// T(n) = O(?)
+// SPACE(n) = O(?)
+
+... your program ...
+\end{Verbatim}
+
+Solution and hint on the page next ...
+
+\newpage
+\textsc{WARNING ... incoming solution and hint}
+
+(a)
+Let $N(n)$ be the number of ways to triangulate an $n$--gon. Then
+\[
+N(n) = N(3)N(n-1) + N(4)N(n-2) + N(5)N(n-3) + \cdots + N(n-1)N(3)
+\]
+where $N(3) = 1$.
+Let $N'(n) = N(n + 2)$.
+Then the above becomes
+\[
+N'(n - 2) = N'(1)N'(n-3) + N'(2)N'(n-4) + N'(3)N'(n-5) + \cdots + N'(n-3)N'(1)
+\]
+Therefore
+$N'(n - 2)$ is $C_{n-2}$, the $(n-2)$--th Catalan number.
+Hence
+\[
+  N(n)
+  =
+  N'(n-2)
+  = C_{n - 2}
+  = \frac{1}{n - 2} \binom{2(n - 2 - 1)}{n - 2}
+  = \frac{1}{n - 2} \binom{2(n - 3)}{n - 2}
+\]
+Asymptotically,
+\[
+  N(n)
+  = C_{n - 2}
+  = O(4^{n-2}/\sqrt{n-2})
+\]
+
+
+(c)
+Consider this polygon as an example:
+\begin{python}
+from latextool_basic import *
+p = Plot()
+p0 = (0,0)
+p1 = (3,-1)
+p2 = (4.5,0.8)
+p3 = (4,2)
+p4 = (2,3)
+p5 = (0.5,2.5)
+p6 = (-1,1)
+
+p += Line(points=[p0,p1,p2,p3,p4,p5,p6,p0])
+#p += Line(points=[p1,p4], linecolor='red')
+#p += Line(points=[p1,p3], linecolor='red')
+#p += Line(points=[p4,p6], linecolor='red')
+#p += Line(points=[p4,p0], linecolor='red')
+
+from latexcircuit import *
+
+X = POINT(x=p0[0], y=p0[1], label='$p_0$', anchor='east'); p += str(X)
+X = POINT(x=p1[0], y=p1[1], label='$p_1$', anchor='north'); p += str(X)
+X = POINT(x=p2[0], y=p2[1], label='$p_2$', anchor='west'); p += str(X)
+X = POINT(x=p3[0], y=p3[1], label='$p_3$', anchor='south west'); p += str(X)
+X = POINT(x=p4[0], y=p4[1], label='$p_4$', anchor='south'); p += str(X)
+X = POINT(x=p5[0], y=p5[1], label='$p_5$', anchor='south east'); p += str(X)
+X = POINT(x=p6[0], y=p6[1], label='$p_6$', anchor='east'); p += str(X)
+
+print(p)
+\end{python}
+Let $C(0, 6)$ to be the cost of the polygon.
+If I divide the polygon this way:
+\begin{python}
+from latextool_basic import *
+p = Plot()
+p0 = (0,0)
+p1 = (3,-1)
+p2 = (4.5,0.8)
+p3 = (4,2)
+p4 = (2,3)
+p5 = (0.5,2.5)
+p6 = (-1,1)
+
+p += Line(points=[p0,p1,p2,p3,p4,p5,p6,p0])
+#p += Line(points=[p1,p4], linecolor='red')
+p += Line(points=[p0,p3], linecolor='red')
+p += Line(points=[p3,p6], linecolor='red')
+#p += Line(points=[p4,p0], linecolor='red')
+
+from latexcircuit import *
+
+X = POINT(x=p0[0], y=p0[1], label='$p_0$', anchor='east'); p += str(X)
+X = POINT(x=p1[0], y=p1[1], label='$p_1$', anchor='north'); p += str(X)
+X = POINT(x=p2[0], y=p2[1], label='$p_2$', anchor='west'); p += str(X)
+X = POINT(x=p3[0], y=p3[1], label='$p_3$', anchor='south west'); p += str(X)
+X = POINT(x=p4[0], y=p4[1], label='$p_4$', anchor='south'); p += str(X)
+X = POINT(x=p5[0], y=p5[1], label='$p_5$', anchor='south east'); p += str(X)
+X = POINT(x=p6[0], y=p6[1], label='$p_6$', anchor='east'); p += str(X)
+
+print(p)
+\end{python}
+I can consider the cost $C(0, 3)$ and $C(3, 6)$
+where
+$C(0, 3)$ is the cost for polygon $p_0 p_1 p_2 p_3$
+and 
+$C(3, 6)$ is the cost for polygon $p_3 p_4 p_5 p_6$.
+
+
+Note that the cost $C(0,6)$ is the cost of the diagonals in the
+$p_0...p_6$ polygon.
+Likewise the cost $C(0,3)$ is the cost of the diagonals in
+the $p_0 ... p_3$ polygon.
+The cost of the line $p_0p_3$ is not included in $C(0,3)$.
+Likewise the cost of the line $p_3 p_6$ is not in the cost $C(3,6)$.
+Therefore cost of triangulating $p_0...p_6$ where $p_0p_3p_6$ is chosen to be in the
+triangulation is
+\[
+  C(0,3) + C(3,6) + c(p_0,p_3) + c(p_3,p_6)
+\]
+where $c(p_i, p_j)$ is the cost of the wall from $p_i$ to $p_j$.
+Of course we have to go through all the possible cases:
+\[
+  C(0, 6)
+  =
+  \min
+  \{
+  C(0,k) + C(k, 6) + c(p_0, p_k) + c(p_k, p_6)
+  \mid
+  k = 1, 2, 3, ..., 5
+  \}
+\]
+In general
+\[
+  C(i,j)
+  =
+  \min
+  \{
+  C(i,k) + C(k, j) + c(p_i, p_k) + c(p_k, p_j)
+  \mid
+  i + 1 \leq k \leq j - 1
+  \}
+\]
+It should be clear that
+\[
+  C(i, i + 1) = 0
+\]
+
+(e) The runtime is $O(n^3)$ and the space is $O(n^2)$.
