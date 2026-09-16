@@ -1,0 +1,41 @@
+from latextool_basic import *
+p = Plot()
+
+d = positions(r"""
+     A
+   B K L
+   C   D
+   F   G
+   I
+""", xscale=0.7)
+edges = {'A':['B', 'K', 'L'],
+  'B':['C'],
+  'C':['F'],
+  'F':['I'],
+  'L':['D'],
+  'D':['G'],
+  }
+labels = {'A':r'$E$',
+  'B':r'$E$',
+  'C':r'$T$',
+  'D':r'$F$',
+  'F':r'$F$',
+  'G':r'\texttt{a}',
+  'I':r'\texttt{a}',
+  'K':r'\texttt{+}',
+  'L':'$T$',
+}
+
+def draw(p, d, edges):
+    rects = {}
+    for k,(x,y) in d.items():
+        rects[k] = Rect(x0=x, y0=y-0.3, x1=x, y1=y+0.3, label=labels[k],
+                        name=k, linecolor='white')
+        p += rects[k]
+    for k,v in edges.items():
+        for _ in v:
+            p += Line(points=[rects[k].bottom(), rects[_].top()])
+
+draw(p, d, edges)
+print(p)
+

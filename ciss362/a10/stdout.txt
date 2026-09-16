@@ -1,0 +1,726 @@
+\begin{center}
+\begin{tikzpicture}
+
+\draw (1.15, -0.35)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.15, -0.35) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{B,C\}$}
+\end{minipage}
+
+};
+\draw (3.45, -0.35)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (3.45, -0.35) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{A\}$}
+\end{minipage}
+
+};
+\draw (5.75, -0.35)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (5.75, -0.35) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{A\}$}
+\end{minipage}
+
+};
+\draw (8.05, -0.35)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (8.05, -0.35) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{A\}$}
+\end{minipage}
+
+};
+\draw (10.35, -0.35)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (10.35, -0.35) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{A\}$}
+\end{minipage}
+
+};
+\draw (12.65, -0.35)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (12.65, -0.35) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{B,C\}$}
+\end{minipage}
+
+};
+\draw (1.15, -1.05)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.15, -1.05) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\emptyset$}
+\end{minipage}
+
+};
+\draw (3.45, -1.05)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (3.45, -1.05) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{C\}$}
+\end{minipage}
+
+};
+\draw (5.75, -1.05)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (5.75, -1.05) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{C\}$}
+\end{minipage}
+
+};
+\draw (8.05, -1.05)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (8.05, -1.05) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{C\}$}
+\end{minipage}
+
+};
+\draw (10.35, -1.05)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (10.35, -1.05) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{S\}$}
+\end{minipage}
+
+};
+\draw (12.65, -1.05)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (12.65, -1.05) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (1.15, -1.75)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.15, -1.75) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{A\}$}
+\end{minipage}
+
+};
+\draw (3.45, -1.75)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (3.45, -1.75) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{S\}$}
+\end{minipage}
+
+};
+\draw (5.75, -1.75)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (5.75, -1.75) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{S\}$}
+\end{minipage}
+
+};
+\draw (8.05, -1.75)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (8.05, -1.75) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{B\}$}
+\end{minipage}
+
+};
+\draw (10.35, -1.75)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (10.35, -1.75) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (12.65, -1.75)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (12.65, -1.75) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (1.15, -2.45)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.15, -2.45) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{C\}$}
+\end{minipage}
+
+};
+\draw (3.45, -2.45)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (3.45, -2.45) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\emptyset$}
+\end{minipage}
+
+};
+\draw (5.75, -2.45)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (5.75, -2.45) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{S\}$}
+\end{minipage}
+
+};
+\draw (8.05, -2.45)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (8.05, -2.45) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (10.35, -2.45)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (10.35, -2.45) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (12.65, -2.45)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (12.65, -2.45) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (1.15, -3.15)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.15, -3.15) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{S\}$}
+\end{minipage}
+
+};
+\draw (3.45, -3.15)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (3.45, -3.15) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{B\}$}
+\end{minipage}
+
+};
+\draw (5.75, -3.15)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (5.75, -3.15) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (8.05, -3.15)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (8.05, -3.15) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (10.35, -3.15)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (10.35, -3.15) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (12.65, -3.15)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (12.65, -3.15) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (1.15, -3.85)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (1.15, -3.85) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small $\{B,S\}$}
+\end{minipage}
+
+};
+\draw (3.45, -3.85)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (3.45, -3.85) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (5.75, -3.85)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (5.75, -3.85) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (8.05, -3.85)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (8.05, -3.85) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (10.35, -3.85)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (10.35, -3.85) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};
+\draw (12.65, -3.85)
+  node[draw, , , color=black,
+       rounded corners=0cm, inner sep=0.2cm] {
+
+\begin{minipage}[t][0.3cm]{1.9cm}
+\mbox{}
+
+\end{minipage}
+
+};
+\draw (12.65, -3.85) node[color=black,
+ inner sep=0.2cm] {
+ 
+\begin{minipage}[t][0.3cm]{1.9cm}
+{\small }
+\end{minipage}
+
+};\node[anchor=south] at (1.15,0.0) {1};\node[anchor=south] at (3.45,0.0) {2};\node[anchor=south] at (5.75,0.0) {3};\node[anchor=south] at (8.05,0.0) {4};\node[anchor=south] at (10.35,0.0) {5};\node[anchor=south] at (12.65,0.0) {6};\node[anchor=east] at (0,-0.35) {1};\node[anchor=east] at (0,-1.05) {2};\node[anchor=east] at (0,-1.75) {3};\node[anchor=east] at (0,-2.45) {4};\node[anchor=east] at (0,-3.15) {5};\node[anchor=east] at (0,-3.85) {6};
+\draw (6.9, -2.1)
+  node[draw, line width=0.06cm, , color=black,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][4.2cm]{13.8cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw[line width=0.08cm,black] (0,0.0) to  (-1,1.0);
+\node[anchor=north east] at (-0.5,0.5) {$j$};\node[anchor=south west] at (-0.5,0.5) {$i$};
+\draw (1.15, 0.85)
+  node[draw, line width=0.1cm, , color=white,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][0.7cm]{2.3cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw (1.15, 0.85) node[color=black] {{\texttt{b}}};
+\draw (3.45, 0.85)
+  node[draw, line width=0.1cm, , color=white,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][0.7cm]{2.3cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw (3.45, 0.85) node[color=black] {{\texttt{a}}};
+\draw (5.75, 0.85)
+  node[draw, line width=0.1cm, , color=white,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][0.7cm]{2.3cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw (5.75, 0.85) node[color=black] {{\texttt{a}}};
+\draw (8.05, 0.85)
+  node[draw, line width=0.1cm, , color=white,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][0.7cm]{2.3cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw (8.05, 0.85) node[color=black] {{\texttt{a}}};
+\draw (10.35, 0.85)
+  node[draw, line width=0.1cm, , color=white,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][0.7cm]{2.3cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw (10.35, 0.85) node[color=black] {{\texttt{a}}};
+\draw (12.65, 0.85)
+  node[draw, line width=0.1cm, , color=white,
+       rounded corners=0cm, inner sep=0cm] {
+
+\begin{minipage}[t][0.7cm]{2.3cm}
+\mbox{}
+
+\end{minipage}
+
+};\draw (12.65, 0.85) node[color=black] {{\texttt{b}}};
+\end{tikzpicture}
+
+\end{center}
+

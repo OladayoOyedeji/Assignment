@@ -1,0 +1,328 @@
+\input{thispreamble.tex}
+
+\renewcommand\AUTHOR{John Doe}
+
+\begin{document}
+\topmatter
+
+\textsc{Objectives}
+\begin{itemize}
+\li Design context-free grammars.
+\li Design PDA.
+\li Prove a language is not context-free.
+\end{itemize}
+
+For questions asking you show an operation on context-free languages
+language is closed, you need not prove your construction is correct.
+(But you are welcome to do so. Most of such proofs, if not immediate,
+is by induction.)
+If the question does not say so, you can choose to give a PDA or a
+context-free grammar.
+For a PDA, draw the PDA state diagram and give the formal definition.
+
+Study the solutions to the following questions in the textbook:
+2.18, 2.30(b) and (c)
+
+Here are the questions you should work.
+Some questions have solutions (either from
+the book or I have written up the solution).
+\begin{myenum}
+\li Sipser 2.11. Q1. 
+\li Sipser 2.12. Q2. 
+\li Sipser 2.14. Q3. 
+\li Sipser 2.15. Solution to 2.15 is provided.
+\li Sipser 2.16. Q4.
+\li Sipser 2.17. Solution to 2.17 is provided.
+\li Sipser 2.18. I talked about this in class. Solution to 2.18 is also provided in the textbook -- study it carefully.
+\li Sipser 2.19. Q5. Solutions to 2.6(a) and 2.6(c) are provided in the textbook. Study it carefully.
+\li Sipser 2.20. Q6.
+\li Sipser 2.30. Q7. 
+\li Sipser 2.31. Q8.
+\li Sipser 2.32. Q9.
+\li Q10.  
+\end{myenum}
+
+%------------------------------------------------------------------------------
+\newpage
+\textsc{How to draw a state diagram}
+
+Here's an example showing you how to draw the elements of a state diagram.
+Also, look at the solution to 1.3 below.
+
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]   (q0) at (0, 0) {$q_0$};
+    \node[state]           (q1) at (4, 0) {$q_1$};
+    \node[state,accepting] (q2) at (8, 0) {$q_2$};
+    \node[state]           (q3) at (0,-4) {$q_3$};
+    \node[state]           (q4) at (4,-4) {$q_4$};
+
+    \node[state]           (q5) at (12, 0) {$q_5$};
+    \node[state]           (q6) at (12,-4) {$q_6$};
+
+    \path[->]
+    (q0) edge                node {$1$} (q1)    
+    (q1) edge [bend left=15] node {$0$} (q2)
+    (q0) edge [left]  node {$\alpha$} (q3)
+    (q1) edge [right] node {$\beta$}  (q4)
+    (q1) edge [loop above]   node {$1$} (q1)
+    (q2) edge [loop below]   node {$0$} ()
+    (q2) edge [bend left=15] node {$1$} (q1)
+    (q3) edge [loop right]   node {$0,1$} ()
+    (q4) edge [loop left]    node {$2,3$} ()
+    (q5) edge [right, bend left=30]    node {$\gamma$} (q6)
+    (q5) edge [right, bend left=60]    node {$\ep$}    (q6)
+    (q5) edge [left, bend right=30]    node {$\delta$} (q6)
+    ;
+  \end{tikzpicture}
+\end{center}
+
+For more information on drawing state diagrams go to my tutorials and
+look for \verb!latex-automata.pdf!:
+\begin{center}
+{\small \url{https://drive.google.com/file/d/1AeE-P0WNvQlitzPDxQpGE8bMR9Yc9gMW}}
+\end{center}
+Let me know if you have any questions about drawing state diagram.
+
+
+%------------------------------------------------------------------------------
+\newpage
+\textsc{How to write a context-free grammar}
+
+Here's a context-free grammar, $G$, for our $\{ a^n b^n \mid n \geq 0 \}$:
+\[
+G:
+\begin{cases}
+S \rightarrow \ep \\
+S \rightarrow aSb
+\end{cases}
+\]
+Usually we combine the productions for the same variable like this:
+\[
+G:
+S \rightarrow \ep \mid aSb
+\]
+Here's an example of a longer grammar:
+\[
+G_1:
+\begin{cases}
+S \rightarrow \ep \mid TU \\
+T \rightarrow a \mid   aT \\
+U \rightarrow \ep \mid bUcc
+\end{cases}
+\]
+And remember to list the starting variable first.
+
+%------------------------------------------------------------------------------
+\newpage
+
+\textsc{How to draw a CYK table}
+
+\begin{python}
+from latextool_basic import *
+p = Plot()
+m = [['$\{B,C\}$',  '$\{A\}$',     '$\{A\}$', '$\{A\}$',  '$\{A\}$',  '$\{B,C\}$'],
+     ['$\emptyset$','$\{C\}$',     '$\{C\}$', '$\{C\}$',  '$\{S\}$',  ''         ],
+     ['$\{A\}$',    '$\{S\}$',     '$\{S\}$', '$\{B\}$',  '',         ''         ],
+     ['$\{C\}$',    '$\emptyset$', '$\{S\}$', '',         '',         ''         ],
+     ['$\{S\}$',    '$\{B\}$',     '',        '',         '',         ''         ],
+     ['$\{B,S\}$',  '',            '',        '',         '',         ''         ],
+     ]
+cyk(p, m, w='baaaab',fontsize='small')
+print(p)
+\end{python}
+
+The following shows you how to control the size of the cells:
+\begin{python}
+from latextool_basic import *
+p = Plot()
+m = [[r'$\{B_b,C_b\}$',         r'$\{A_a\}$',           r'$\{A_a\}$',           r'$\{A_a\}$',           r'$\{A_a\}$',           r'$\{B_b,C_b\}$'],
+     [r'$\emptyset$',           r'$\{C_{(1,2),(1,3)}\}$', r'$\{C_{(1,3),(1,4)}\}$', r'$\{C_{(1,4),(1,5)}\}$', r'$\{S_{(1,5),(1,6)}\}$', r''],
+     [r'$\{A_{(1,1),(2,2)}\}$',   r'$\{S_{(1,2),(2,3)}\}$', r'$\{S_{(1,3),(2,4)}\}$', r'$\{B_{(2,4),(1,6)}\}$', r'',                    r''],
+     [r'$\{C_{(3,1),(1,4)}\}$',   r'$\emptyset$',         r'$\{S_{(1,3),(3,4)}\}$', r'',                   r'',                    r''],
+     [r'$\{S_{(3,1),(2,4)}\}$',   r'$\{B_{(2,2),(3,4)}\}$', r'',                    r'',                   r'',                    r''],
+     [r'$\{B_{(1,1),(2,5)}$ $S_{(3,1),(3,4)}\}$', r'',      r'',                    r'',                   r'',                    r''],
+     ]
+def getrect():
+    width = 2.6  # width of cell
+    height = 1.4 # height of cell
+    def rect(x):
+        return Rect(x0=0, y0=0, x1=width, y1=height,
+                    innersep=0.2,
+                    s='%s' % x, align='t')
+    return rect
+    
+cyk(p, m, w='baaaab', fontsize='small', rect=getrect())
+print(p)
+\end{python}
+
+%------------------------------------------------------------------------------
+\newpage
+Q1. Sipser 2.11. 
+
+\textsc{Solution}.
+
+\input{q01.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q2. Sipser 2.12.
+
+\textsc{Solution}.
+
+\input{q02.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q3. Sipser 2.14.
+
+\textsc{Solution}.
+
+\input{q03.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Sipser 2.15.
+
+Give a counter-example to show that the following fails to prove
+that the class of context-free languages is closed under Kleene
+star.
+
+\lq\lq
+Let $L$ be a CFL that is generated by the CFG
+$G = (\Sigma, V, S, P)$ where $V$ is the set of variables,
+$S \in V$ is the starting symbol, and $P$ is the set of production rules.
+Add the new rule $S \rightarrow SS$ and call the resulting
+grammar $G'$.
+$G'$ generates $L^*$."
+
+\textsc{Solution}.
+
+Consider the context-free grammar $G: S \rightarrow a$.
+Then $L(G')$ does not contain $\ep$.
+(In fact $L(G') = \{a^n \mid n \geq 2\}$.)
+\qed
+
+%------------------------------------------------------------------------------
+\newpage
+Q4. Sipser 2.16
+
+Show that the class of context-free languages is closed under
+union, concatenation, and Kleene star.
+
+(Note that I have actually already given you the proofs in class.
+You just have to write it up in proper mathematical prose.)
+
+\textsc{Solution}.
+
+\input{q04.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Sipser 2.17.
+Use the results of Exercise 2.16 to give another proof that
+every regular language is context free, by showing how to convert
+a regular expression directly to an equivalent context-free
+grammar.
+
+\textsc{Solution}.
+
+We will prove by induction on the left of the regular expression $r$
+such that $L(r)$ is context-free.
+Let $P(n)$ be the statement that if $r$ is a regular expression
+of length $n$, then $L(r)$ is context-free.
+
+\textsc{Base case}.
+Let $r$ be a regular expression of length $1$.
+Then either $r = c \in \Sigma$ or $r = \emptyset$.
+If $c \in \Sigma$, then $L(c) = \{c\}$ is context-free since
+the grammar $S \rightarrow c$ generated $L(c)$.
+Also, the grammar $S \rightarrow S$ generates $L(\emptyset)$.
+Therefore $P(1)$ holds.
+
+\textsc{Inductive case}.
+Assume $P(k)$ holds for $1 \leq k \leq n$.
+We will show that $P(n + 1)$ holds where $n + 1 \geq 2$.
+Let $r$ be a regular expression of length $n + 1$.
+Then $r$ is $(r_0), r_0^*, r_0 \cup r_1, r_0 \cdot r_1$.
+In all cases $r_0$ or $r_0, r_1$ are regular expressions of length $\leq n$.
+Hence $L(r_0)$ or $L(r_0), L(r_1)$ are context-free.
+Since context-free languages are closed under concatenation, union, and Kleene star,
+$L(r)$ is also context-free.
+(The case of $r = (r_0)$ is immediate and does not require closure of concatention, union, Kleene star.)
+Hence $P(n + 1)$ holds.
+
+Therefore by strong mathematical induction $P(n)$ holds for all $n \geq 1$, i.e.,
+all regular languages are context-free.
+\qed
+
+%------------------------------------------------------------------------------
+\newpage
+Q5. Sipser 2.19.
+
+\textsc{Solution}.
+
+\input{q05.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q6. Sipser 2.20.
+
+\textsc{Solution}.
+
+\input{q06.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q7. Sipser 2.21.
+(You need not provide the proof.)
+
+\textsc{Solution}.
+
+\input{q07.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q8. Sipser 2.22.
+
+\textsc{Solution}.
+
+\input{q08.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q9. Sipser 2.32.
+
+\textsc{Solution}.
+
+\input{q08.tex}
+
+%------------------------------------------------------------------------------
+
+Q10.
+Consider the grammar $G$ given by
+  \begin{align*}
+    S &\rightarrow AB \mid BA \\
+    A &\rightarrow AC \mid a \\
+    B &\rightarrow SA \mid SB \mid b \\
+    C &\rightarrow SS \mid BA \mid a \\
+  \end{align*}
+  Using the grammar $G$ above, check if the following words are generated
+  by $G$ using the CKY algorithm. Provide the completed CYK tables.
+  For words generated by $G$, write down all their
+  possible derivations. 
+  \begin{enumerate}
+  \item[(a)] $aa$
+  \item[(b)] $bab$
+  \item[(c)] $abab$
+  \item[(d)] $aabaab$
+  \end{enumerate}
+
+\textsc{Solution}.
+
+\input{q10.tex}
+
+
+
+\end{document}

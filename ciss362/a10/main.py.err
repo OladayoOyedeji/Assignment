@@ -1,0 +1,6 @@
+/usr/lib64/python3.13/site-packages/latextool_basic.py:898: SyntaxWarning: invalid escape sequence '\d'
+  \draw[s]
+/usr/lib64/python3.13/site-packages/latextool_basic.py:8853: SyntaxWarning: invalid escape sequence '\A'
+  """ get assessment (example: "q0101") from s (a latex string \newcommand\ASSESSMENT{*} or from cwd """
+/usr/lib64/python3.13/site-packages/latextool_basic.py:8927: SyntaxWarning: invalid escape sequence '\}'
+  ... \answerbox{...........\}..\}.....} ...

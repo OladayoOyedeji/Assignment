@@ -1,0 +1,218 @@
+\input{thispreamble.tex}
+
+\renewcommand\AUTHOR{John Doe}
+
+\begin{document}
+\topmatter
+
+\textsc{Objectives}
+\begin{itemize}
+\li Design TM
+\end{itemize}
+
+Here are the questions:
+\begin{myenum}
+\li Sipser 3.1. Q1. Solution to 3.1(b) is provided in the textbook. Study it carefully. 
+\li Sipser 3.2. Study the solution to 3.2(a).
+\li Sipser 3.3. Study the solution in the textbook.
+\li Sipser 3.5. Study the solution in the textbook.
+\li Sipser 3.7. Q2.
+\li Sipser 3.8. Q3. Solution to 3.8(a) is provided in the textook. Study it carefully.
+\li Sipser 3.9. Q4. With modification. 
+\li Sipser 3.10. Solution to 3.10 is provided in the textook. Study it carefully. 
+\li Sipser 3.11. Q5. 
+\li Sipser 3.15. Q6. Solution to 3.15(a) is in the textbook. Study it carefully.
+\li Sipser 3.16. Q7. Solution to 3.16(a) is in the textbook. Study it carefully.
+Ignore (e).
+\end{myenum}
+
+
+%------------------------------------------------------------------------------
+\newpage
+\textsc{How to draw a state diagram}
+
+Here's an example showing you how to draw the elements of a state diagram.
+Also, look at the solution to 1.3 below.
+
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]   (q0) at (0, 0) {$q_0$};
+    \node[state]           (q1) at (4, 0) {$q_1$};
+    \node[state,accepting] (q2) at (8, 0) {$q_2$};
+    \node[state]           (q3) at (0,-4) {$q_3$};
+    \node[state]           (q4) at (4,-4) {$q_4$};
+
+    \node[state]           (q5) at (12, 0) {$q_5$};
+    \node[state]           (q6) at (12,-4) {$q_6$};
+
+    \path[->]
+    (q0) edge                node {$1$} (q1)    
+    (q1) edge [bend left=15] node {$0$} (q2)
+    (q0) edge [left]  node {$\alpha$} (q3)
+    (q1) edge [right] node {$\beta$}  (q4)
+    (q1) edge [loop above]   node {$1$} (q1)
+    (q2) edge [loop below]   node {$0$} ()
+    (q2) edge [bend left=15] node {$1$} (q1)
+    (q3) edge [loop right]   node {$0,1$} ()
+    (q4) edge [loop left]    node {$2,3$} ()
+    (q5) edge [right, bend left=30]    node {$\gamma$} (q6)
+    (q5) edge [right, bend left=60]    node {$\ep$}    (q6)
+    (q5) edge [left, bend right=30]    node {$\delta$} (q6)
+    ;
+  \end{tikzpicture}
+\end{center}
+
+For more information on drawing state diagrams go to my tutorials and
+look for \verb!latex-automata.pdf!:
+\begin{center}
+{\small \url{https://drive.google.com/file/d/1AeE-P0WNvQlitzPDxQpGE8bMR9Yc9gMW}}
+\end{center}
+Let me know if you have any questions about drawing state diagram.
+
+%------------------------------------------------------------------------------
+\textsc{How to write the computation done by a TM}
+
+A TM computes just like a DFA/NFA/PDA computes.
+A snapshot of the state of computation of a TM is called (just like the
+case for DFA) a \lq\lq instantaneous description" or
+\lq\lq configuration" for that TM.
+For instance is I say the following
+\[
+Aq_1aabbb
+\]
+is the \lq\lq configuration" or \lq\lq instantaneous description"
+of some TM while doing a computation, I mean
+at this point in the computation,
+\begin{itemize}
+\li the TM has the string $Aaabbb$ (followed by an
+infinitely number of spaces) in it's input tape
+\li the TM is at state $q_1$
+\li the TM has its read/write head at the leftmost $a$ (i.e., index $1$).
+The character that the read/write head is about to read is always
+the character on the right of the state in the configuration:
+\[
+Aq_1\underline{a}abbb
+\]
+\end{itemize}
+
+Here's how to write a derivation of \lq\lq instantaneous descriptions" or
+\lq\lq configurations" for a TM:
+\begin{align*}
+q_0 aaabbb &\vdash Aq_1aabbb \\ 
+           &\vdash Aaq_1abbb \\ 
+           &\vdash Aaaq_1bbb \\
+           &\vdash AaaBq_2bb 
+\end{align*}
+where the following is an incomplete list of transitions for this TM:
+\begin{align*}
+\delta(q_0, a) &= (q_1, A, R) \\
+\delta(q_1, a) &= (q_1, a, R) \\
+\delta(q_1, b) &= (q_2, B, R) 
+\end{align*}
+
+%------------------------------------------------------------------------------
+\newpage
+Q1. Sipser 3.1. 
+Solution to 3.1(b) is provided in the textbook. Study it carefully.
+Write the TM computations using the \lq\lq $\vdash$" notation.
+\begin{myenum}
+\li Do \verb!$\vdash$! to get $\vdash$.
+\li Do \verb!$\SPACE$! to get $\SPACE$.
+\li Do \verb!\texttt{x}! to write x in typewriter font: \texttt{x}.
+\li Do \verb!$q_{\text{accept}}$! to get $q_{\text{accept}}$.
+\li Do \verb!$q_{\text{reject}}$! to get $q_{\text{reject}}$.
+\end{myenum}
+
+\textsc{Solution}.
+
+\input{q01.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q2. Sipser 3.7.
+
+\textsc{Solution}.
+
+\input{q02.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q3. Sipser 3.8.
+Solution to 3.8(a) is provided in the textook. Study it carefully.
+
+For each part, design a TM and then
+implement your TMs using the python
+program I gave, test it fully, and then paste your TM program into the
+solution area of this question.
+
+(d)
+Recall that
+the language
+\[
+L = \{w \mid w \in \{a, b, c\}^*, \,\,\,
+\text{$w$ has the same number of $a$'s, $b$'s, $c$'s} \}
+\]
+is not a CFL.
+Design a TM that accepts $L$.
+
+(e) \textsc{Optional DIY:}
+Design a TM that checks if an integer is prime.
+To check is $n$ is a prime, the user enters
+$\langle n \rangle$ (which is $n$ 1s) on the input tape.
+What about checking that the input is composite?
+(A composite number is an integer $> 1$ that is not a prime.)
+
+\textsc{Solution}.
+
+\input{q03.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q4. Sipser 3.9.
+
+For (a), show that a 2-PDAs is more powerful than 1-PDAs and in fact
+2-PDAs are Turing machines.
+
+\textsc{Solution}.
+
+\input{q04.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q5. Sipser 3.11.
+
+(Basically, you need to simulate the left-hand-side tape on the right-hand-side tape.
+Right?
+You can take a pair of scissors and snip the two-way infinite tape into two pieces
+and then try to join the left-hand-side tape onto the right-hand-side tape.
+But you cannot stick the left-hand-side infinte tape onto the right-hand-side \textit{infinite} tape.
+Because in that case you have to travel infinitely far to the right
+to reach the left-hand-side tape, which means you can never reach it.
+So what should you do?)
+
+\textsc{Solution}.
+
+\input{q05.tex}
+
+
+%------------------------------------------------------------------------------
+\newpage
+Q6. Sipser 3.15. 
+Solution to 3.15(a) is in the textbook. Study it carefully.
+
+\textsc{Solution}.
+
+\input{q06.tex}
+
+%------------------------------------------------------------------------------
+\newpage
+Q7.
+Solution to 3.16(a) is in the textbook. Study it carefully.
+Ignore (e).
+
+\textsc{Solution}.
+
+\input{q07.tex}
+
+\end{document}
