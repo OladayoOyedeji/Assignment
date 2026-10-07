@@ -5,9 +5,9 @@ We have the following:
            |x| &= n + 1                                                   & & \tag{a} \\ 
 \THEREFORE |x| &\geq 1 \\
 \THEREFORE |x| &\neq 0 \\
-\THEREFORE x &\neq \answerbox{?}                                          & & \text{by Q2} \\
-\THEREFORE x &= x'x'' \text{ for some } x' \in \Sigma, \ x'' \in \Sigma^* & & \text{by \answerbox{?}} \tag{b} \\
-\THEREFORE |x| &= 1 + |x''| \text{ for some } x'' \in \Sigma^*            & & \text{by \answerbox{?}} \\
+\THEREFORE x &\neq \ep                                          & & \text{by Q2} \\
+\THEREFORE x &= x'x'' \text{ for some } x' \in \Sigma, \ x'' \in \Sigma^* & & \text{by Concatenation of String} \tag{b} \\
+\THEREFORE |x| &= 1 + |x''| \text{ for some } x'' \in \Sigma^*            & & \text{by Length of strings} \\
 \THEREFORE n + 1 &= 1 + |x''| \text{ for some } x'' \in \Sigma^*          & & \text{by (a)} \\
 \THEREFORE |x''| &= n \text{ for some } x'' \in \Sigma^*
 \end{align*}
@@ -16,13 +16,13 @@ Therefore for some $x' \in \Sigma$ and $x'' \in \Sigma^*$
 we have the following:
 \begin{align*}
 (xy)^R
-&= \left( \answerbox{?}x'' y \right)^R                      & & \text{by (b)} \\
-&= (\answerbox{?} \cdot x''y)^R                                               \\
-&= (x''y)^R \cdot (\answerbox{?})^R                         & & \text{by $P(1)$}\\
-&= \left( y^R \cdot (x'')^R \right) \cdot (\answerbox{?})^R & & \text{by $P(n)$} \\
-&= y^R \cdot \left( (x'')^R \cdot (\answerbox{?})^R \right) & & \text{by \answerbox{?}}\\
-&= y^R \cdot \left( \answerbox{?}x'' \right)^R              & & \text{by \answerbox{?}}\\
-&= \answerbox{?}^R \cdot \answerbox{?}^R                    & & \text{by (b)} 
+&= \left( x' x'' y \right)^R                      & & \text{by (b)} \\
+&= (x' \cdot x''y)^R                                               \\
+&= (x''y)^R \cdot (x')^R                         & & \text{by $P(1)$}\\
+&= \left( y^R \cdot (x'')^R \right) \cdot (x')^R & & \text{by $P(n)$} \\
+&= y^R \cdot \left( (x'')^R \cdot (x')^R \right) & & \text{by Associativity}\\
+&= y^R \cdot \left( x' x'' \right)^R              & & \text{by Reversal of Strings}\\
+&= y^R \cdot x^R                    & & \text{by (b)} 
 \end{align*}
 Hence $P(n+1)$ holds.
 \qed

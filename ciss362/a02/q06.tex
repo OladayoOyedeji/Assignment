@@ -1,0 +1,27 @@
+%-*-latex-*-
+
+\textit{Proof}.
+
+\textsc{Base Case}
+$P(1)$ from the definition of an empty collection of primes $n=1$
+
+Hence $P(1)$ holds
+
+\textsc{Inductive Case}
+Assume $P(k)$ holds for $k > 1$
+
+we will now show $P(k+1)$
+
+\textsc{Case I} $k+1$ is a prime therefore the ordered collection of primes involved is $\{k+1\}$
+
+\textsc{Case II} $k+1$ is a composite which means
+
+$k+1 = a \cdot b$ Since $a \leq k$ and $b \leq k$ that means $P(a), P(b)$ both holds
+
+$a$ has an ordered collections of primes $Q$ and $b$ has an ordered collections of primes $R$ as well
+
+which means $k+1$ has $Q + R$ ordered collection of primes therefore $P(k+1)$ holds
+
+by weak induction $P(n)$ holds
+
+\qed

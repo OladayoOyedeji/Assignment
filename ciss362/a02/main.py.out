@@ -1,0 +1,15 @@
+\begin{center}
+\begin{tikzpicture}
+
+\fill[blue!10] (0.0, 0.0) circle (0.2);
+\node [line width=0.03cm,black,minimum size=0.37cm,draw,circle] at (0.0,0.0)(a){};
+\fill[blue!10] (1.0, 2.0) circle (0.2);
+\node [line width=0.03cm,black,minimum size=0.37cm,draw,circle] at (1.0,2.0)(b){};
+\fill[blue!10] (2.0, 0.0) circle (0.2);
+\node [line width=0.03cm,black,minimum size=0.37cm,draw,circle] at (2.0,0.0)(c){};\draw[line width=0.03cm,black] (a) to  (b);
+\draw[line width=0.03cm,black] (b) to  (c);
+\draw[line width=0.03cm,black] (c) to  (a);
+\end{tikzpicture}
+
+\end{center}
+

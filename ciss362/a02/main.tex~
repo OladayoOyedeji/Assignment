@@ -1,0 +1,260 @@
+\input{myassignmentpreamble}
+\input{ciss362}
+\input{yliow}
+
+\renewcommand\solution[1]{#1}
+
+\renewcommand\TITLE{Assignment 2 \solution{Solution}}
+
+\begin{document}
+\topmatter
+
+
+
+
+Q1. Textbook Q 0.3.
+
+\SOLUTION
+
+\input{q01.tex}
+
+
+
+
+\newpage
+Q2. Textbook Q 0.4.
+
+\SOLUTION
+
+\input{q02.tex}
+
+
+
+
+\newpage
+Q3. Textbook Q 0.5.
+
+\SOLUTION
+
+\input{q03.tex}
+
+
+
+
+\newpage
+Q4. Textbook Q 0.6.
+
+\SOLUTION
+
+\input{q04.tex}
+
+
+
+
+\newpage
+Q5. Textbook Q 0.7.
+
+\SOLUTION
+
+\input{q05.tex}
+
+
+
+
+\newpage
+Q6. Textbook Q 0.10
+
+\SOLUTION
+
+\input{q06.tex}
+
+
+
+
+\newpage
+Q7. Textbook Q 0.11 (for 2nd edition) and Q 0.12 (for 3rd edition).
+
+\SOLUTION
+
+\input{q07.tex}
+
+
+
+
+\newpage
+Q8. Prove or disprove the following: Let $X$ and $Y$ be
+sets.
+\begin{enumerate}
+  \item[(a)] $P(X \times Y) = P(X) \times P(Y)$
+  \item[(b)] $P(X \cup Y) = P(X) \cup P(Y)$
+\end{enumerate}
+Remember that to disprove a statement, all you need is a
+counterexample.
+When constructing examples, always construct the simplest.
+
+\SOLUTION
+
+\input{q08.tex}
+
+
+
+
+\newpage
+
+
+
+
+ %\item[Q9.] Prove that for $n \geq 4$, $2^n \geq n^2$.
+ %          [Hint: Mathematical Induction.]
+ %\input s09
+
+ %\item[Q10.] Prove that $3 | n^3-n+3$ for $n\geq 0$.
+ %\input s10
+
+
+
+Q9. Textbook Q 0.12 (for 2nd edition) or Q 0.13 (for 3rd edition).
+
+\SOLUTION
+
+\input{q09.tex}
+
+
+
+
+\newpage
+Q10. Is there a finite set $X$ such that
+       $P(X)= X$? Prove your claim.
+
+\SOLUTION
+
+\input{q10.tex}
+
+
+
+
+\newpage
+Q11. Using mathematical induction, 
+prove that for $n \geq 4$, $2^n \geq n^2$.
+[Can you also prove this using Calculus? 
+Any other methods you can think of?]
+       
+\SOLUTION
+
+\input{q11.tex}
+
+
+
+
+\newpage
+Q12. Using mathematical induction, prove that $3 \mid n^3-n+3$ for $n\geq 0$.
+ [Can you prove it without using induction?]
+
+\SOLUTION
+
+\input{q12.tex}
+
+
+
+
+\newpage
+Q13. A triangulation graph is a graph which looks like a patchwork of 
+ triangles, i.e., 
+ the graph is constructed by \lq\lq glueing'' triangles
+ on a tabletop. 
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node   (a) [shape=circle, draw] at (0, 0) {};
+\node   (b) [shape=circle, draw] at (1, 2) {};
+\node   (c) [shape=circle, draw] at (2, 0) {};
+\path[-] (a) edge node {} (b)
+(b) edge node {} (c)
+(c) edge node {} (a)
+;
+\end{tikzpicture}
+\end{center}
+along edges.
+ Note that line (edge) crossings are not allowed.
+ For instance here's one 5 nodes (i.e. circles) and 7 edges (i.e. lines):
+
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node   (a) [shape=circle, draw] at (0, 3) {};
+\node   (b) [shape=circle, draw] at (2, 3) {};
+\node   (c) [shape=circle, draw] at (4, 2.5) {};
+\node   (d) [shape=circle, draw] at (1, 0) {};
+\node   (e) [shape=circle, draw] at (3, 1) {};
+\path[-] (a) edge node {} (b)
+(b) edge node {} (c)
+(a) edge node {} (d)
+(b) edge node {} (d)
+(b) edge node {} (e)
+(d) edge node {} (e)
+(c) edge node {} (e)
+;
+\end{tikzpicture}
+\end{center}
+
+(a) Is it true that using the above construction (i.e., glueing
+triangle graphs along edges), all the \lq\lq pieces'' (i.e. finite regions) 
+that you see 
+are always triangles (i.e. a shape that is bounded by 
+exactly 3 edges)? For instance in the above graph, there are 3 triangles.
+
+(b) The degree of a node is just the number of edges (lines) joined to it.
+For the above type of graphs is it possible to draw one 
+with exactly one node of degree 10? 
+Show that it is possible by drawing such a graph or prove it's not possible.
+
+(c) Is it possible to have a graph with 5 nodes of degree 2? 
+Show that it is possible by drawing such a graph or prove it's not possible.
+
+(d) Is it possible to have a graph with no nodes of degree 2? 
+Show that it is possible by drawing such a graph or prove it's not possible.
+
+(e) The degrees of the nodes in the above example is 2, 2, 3, 3, 4.
+Is it possible to have a graph with degrees 2, 2, 2, 2, 4?
+Show that it is possible by drawing such a graph or prove it's not possible.
+
+(f) The degrees of the nodes in the above example is 2, 2, 3, 3, 4.
+Is it possible to have a graph with degrees 2, 2, 3, 3, 3?
+Show that it is possible by drawing such a graph or prove it's not possible.
+
+(g) Is it possible to have a triangulation with no nodes of degree 2 or 3?
+
+(h) Suppose you have a triangular graph $G$ with a node $v$ of degree 2.
+If there are at least 4 nodes in $G$, after removing $v$ from $G$
+and removing all the edges attached to $v$, is the resulting graph
+a triangulation graph? 
+Prove that this is true or provide a counterexample.
+
+\SOLUTION
+\input{q13.tex}
+
+
+
+
+\newpage
+Q14. A graph is a bunch of dots (i.e. nodes) and lines (i.e. edges).
+There are no arrows on the lines.
+We are talking about an undirected graph.
+A graph is a tree if the graph has not loops, i.e.,
+a graph is a tree if the graph does not have a sequence of joined edges
+that ends where is started.
+Make sure you draw a few trees for yourself.
+For each tree, count the number of nodes and the number of edges.
+You will see that there's an interesting relationship.
+
+(a) What is the relationship between $n$ and $e$ where $n$ is the 
+number of nodes of a tree $T$ and $e$ is the number of edges of $T$?
+
+(b) Given a tree with $n$ nodes and $e$ edges, prove
+your claim in (a) using by mathematical induction.
+(Well, it's either an induction on $n$ or $e$.
+Which one are you going to use?)
+
+\SOLUTION
+
+\input{q14.tex}
+
+\end{document}

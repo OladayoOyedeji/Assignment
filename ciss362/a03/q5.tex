@@ -1,0 +1,30 @@
+$P(n)$: $x$ such that $|x| = n$, $x = x^R$ if $|x| = 0$ or $|x|$ = 1 or for $|x| > 1$ $x = x'x''x'$  where $x' \in \Sigma$
+and $x'' \in \Sigma^*$ and $x''$ is palindromic.
+
+$P(0)$: $|x| = 0$ so $x = \ep$
+
+$x = \ep = x^R$
+
+$P(1)$: $|x| = 1$ so $x = x^R$
+
+Assume $P(n)$ prove $P(n+1)$
+
+Let $x = x'x''x'$
+where $x' \in \Sigma$
+and $x'' \in \Sigma^*$ and $x''$ is palindromic.
+
+\begin{align*}
+  |x| &= n + 1                                                             & & \tag{a} \\ 
+\THEREFORE |x| &\geq 1 \\
+\THEREFORE |x| &\neq 0 \\
+\THEREFORE x^R = (x'x''x')^R                                              \\
+\THEREFORE x^R = (x'\cdot(x''x'))^R                                        & & \text{by Q4} \\
+\THEREFORE x^R = (x''x')^R \cdot x'^R                                      & & \text{by Q4} \\
+\THEREFORE x^R = x'^R \cdot x''^R \cdot x^R                                & & \text{by Q4} \\
+\THEREFORE x'^R = x'^R                                          & & \text{by P(1)} \\
+\THEREFORE x''^R = x''^R                                          & & \text{by P(n)} \\
+\THEREFORE x^R = x
+\end{align*}
+
+Hence $P(n+1)$ holds
+\qed

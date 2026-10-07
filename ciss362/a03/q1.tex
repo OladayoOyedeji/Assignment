@@ -2,11 +2,11 @@ We will prove that if $x \neq \ep$, then $|x| \neq 0$.
 \begin{align*}
 x &\neq \ep \\
 \THEREFORE x &= x'x'' \text{ for some } x' \in \Sigma, x'' \in \Sigma^*
-           & & \text{by \answerbox{?}} \\
+           & & \text{by Concatenation} \\
 \THEREFORE |x| &= |x' x''| \text{ for some } x' \in \Sigma, x'' \in \Sigma^* 
            \\ 
 \THEREFORE |x| &= 1 + |x''| \text{ for some } x' \in \Sigma, x'' \in \Sigma^*
-           & & \text{by \answerbox{?}} \\
+           & & \text{by Length of strings} \\
 \THEREFORE |x| &\geq 1 \text{ for some } x' \in \Sigma, x'' \in \Sigma^* 
 \end{align*}
 This implies that $|x| \geq 1$ and therefore $|x| \neq 0$.
@@ -18,13 +18,13 @@ Therefore we conclude that if $|x| = 0$, then $x = \ep$. \qed
 The less formal (but equally rigorous) way to write the proof is as follows:
 
 \textit{
-Suppose $x \neq \ep$, then by \answerbox{?}, $x = x'x''$ 
+Suppose $x \neq \ep$, then by Concatenation of strings, $x = x'x''$ 
 for some $x' \in \Sigma$ and $x'' \in \Sigma^*$.
 In that case
 \begin{align*}
 |x| 
 &= |x' \cdot x''| \\ 
-&= 1 + |x''| & & \text{ by \answerbox{?}}    \\
+&= 1 + |x''| & & \text{ by Length of strings}    \\
 &\geq 1
 \end{align*}
 which implies that $|x| \neq 0$.

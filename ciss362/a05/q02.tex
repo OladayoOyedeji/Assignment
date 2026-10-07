@@ -1,0 +1,40 @@
+(a)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]   (q0) at (0, 0)  {$q_0$};
+    \node[state]           (q1) at (2, 0)  {$q_1$};
+    \node[state]           (q2) at (4, 0)  {$q_2$};
+    \node[state]           (q3) at (6, 0)  {$q_3$};
+    \node[state]           (q4) at (8, 0)  {$q_4$};
+    \node[state]           (q5) at (10, 0) {$q_5$};
+    \node[state]           (q6) at (5, -2) {$q_6$};
+    \node[state,accepting] (q7) at (5, -4) {$q_6$};
+
+    \path[->]
+    (q0) edge                                   node {$0,1$}  (q1)
+    (q1) edge                                   node {$0,1$}  (q2)
+    (q2) edge                                   node {$0,1$}  (q3)
+    (q3) edge                                   node {$0,1$}  (q4)
+    (q4) edge                                   node {$0,1$}  (q5)
+    
+    (q0) edge [left, bend right=15]             node {$\ep$}  (q6)
+    (q1) edge [left, bend right=15]             node {$\ep$}  (q6)
+    (q2) edge [left, bend right=15]             node {$\ep$}  (q6)
+    (q3) edge [left, bend left=15]              node {$\ep$}  (q6)
+    (q4) edge [left, bend left=15]              node {$\ep$}  (q6)
+    (q5) edge [left, bend left=15]              node {$\ep$}  (q6)
+
+    (q6) edge                                   node {$1$}    (q7)
+    (q7) edge [left, bend left=30]              node {$0,1$}  (q6)
+    
+    %% (q1) edge  [loop left]                      node {$1$}    ()
+    %% (q2) edge  [loop right]                     node {$0$}    ()
+    %% (q3) edge  [loop below]                     node {$0$}    ()
+    %% (q4) edge  [loop below]                     node {$0$}    ()
+    %% (q5) edge  [loop right]                     node {$0$}    ()
+    %% (q6) edge  [loop right]                     node {$0,1$}  ()
+    
+    ;
+  \end{tikzpicture}
+\end{center}

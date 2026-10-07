@@ -1,0 +1,17 @@
+Let $X$ be the set where $P(n)$ doesnt hold
+
+let $m \in X$ such that $\forall x \in X, m \leq x$
+
+therefore $P(m-1)$ holds i.e
+
+$4(1^3 + 2^3 + \cdots + (m-1)^3) = m^2(m-1)^2$
+
+$P(m) = 4(1^3 + 2^3 + \cdots + m^3) = 4(1^3 + 2^3 + \cdots + (m-1)^3) + 4m^3$
+
+$= m^2(m^2 - 2m + 1) + 4m^3 = m^4 - 2m^3 + m^2 + 4m^3 = m^4 + 2m^3 + m^2$
+
+$= m^2(m^2 + 2m + 1) = m^2(m + 1)$
+
+Hence a contradiction
+
+so $P(n)$ holds for all $n \geq 0$
