@@ -41,8 +41,9 @@ initial_state = (r0, c0)
 r1 = int(input("goal row: "))
 c1 = int(input("goal column: "))
 goal_state = (r1, c1)
-search = input("bfs or dfs or ucs: ")
+search = input("bfs or dfs or ucs or iddfs: ")
 cost = None
+iddfs = None
 if search == 'bfs':
     fringe = Queue()
 elif search == 'dfs':
@@ -59,7 +60,9 @@ elif search == 'ucs':
         x, y, value = line.split()
         state = (int(x), int(y))
         cost[state] = int(value)
-        
+elif search == 'iddfs':
+    fringe = Stack()
+    iddfs = True
 else:
     raise Exception('invalid search')
 
@@ -106,7 +109,8 @@ else:
 problem = MazeProblem(maze=maze,
                       initial_state=(r0,c0),
                       goal_states=[(r1,c1)])
-
+if search == "iddfs":
+    problem = DLSProblem(problem, -1)
 
 print("close animation window to halt", flush=True)
 closed_list = SetClosedList()
@@ -115,7 +119,8 @@ solution = graph_search(problem=problem,
                         fringe=fringe,
                         closed_list=closed_list,
                         view0=view0,
-                        cost=cost
+                        cost=cost,
+                        iddfs=iddfs
                         )
 
 #==============================================================================

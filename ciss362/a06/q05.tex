@@ -1,0 +1,30 @@
+(a)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, 0)    {$q_0$};
+    \node[state]                      (q1)  at (2, 2)    {$q_1$};
+    \node[state]                      (q2)  at (2, -2)   {$q_2$};
+    \node[state]                      (q3)  at (4, 2)    {$q_3$};
+    \node[state]                      (q4)  at (4, -2)   {$q_4$};
+    \node[state]                      (q5)  at (6, 0)   {$q_5$};
+
+     \path[->]
+     (q0)  edge  [left, bend left=30]             node {$/$}        (q1)
+     (q0)  edge  [left, bend right=30]            node {$a,b,\#$}   (q2)
+     (q1)  edge                                   node {$\#$}       (q3)
+     (q3)  edge  [left, bend left=30]             node {$\#$}       (q5)
+     (q5)  edge  [left, bend left=30]             node {$/$}        (q4)
+     (q4)  edge                                   node {$a,b,\#,/$} (q2)
+     
+     (q1)  edge  [left, bend right=30]            node {$a,b,/$}    (q2)
+     (q3)  edge  [left, bend right=30]            node {$/$}        (q2)
+     (q5)  edge  [left, bend right=30]            node {$a,b,/$}    (q2)
+
+     (q3)  edge  [loop above]                     node {$a,b$}      ()
+     (q2)  edge  [loop below]                     node {$a,b,\#,/$} ()
+     ;
+  \end{tikzpicture}
+\end{center}
+(b)
+$/\#(ab)^*\#/$

@@ -18,13 +18,11 @@ if random not in "yY":
     board = input("initial: ")
     board = Board(n=size, s=board, seperator=',')
     
-search = input("bfs or dfs or ucs: ")
+search = input("bfs or dfs or ucs or iddfs: ")
 
-problem = N2_1Problem(board=board,
-                      initial_state=board,
-                      goal_states=board.goal_states())
 
-cost = [0, 0, 0, 0]
+cost = None
+iddfs = None
 if search == 'bfs':
     fringe = Queue()
 elif search == 'dfs':
@@ -34,18 +32,31 @@ elif search == 'ucs':
     cost = list(map(int, input().split()))
     if len(cost) < 4:
         cost.extend([0] * (4 - len(cost)))
+    print(cost)
+elif search == 'iddfs':
+    fringe = Stack()
+    board = DLSBoard(board)
+    iddfs = True
 else:
     raise Exception('invalid search')
 
+problem = N2_1Problem(board=board,
+                      initial_state=board,
+                      goal_states=board.goal_states())
+
 closed_list = SetClosedList()
-solution, n = graph_search(problem=problem,
+solution = graph_search(problem=problem,
                         fringe=fringe,
                         closed_list=closed_list,
-                        cost=cost
+                        cost=cost,
+                        iddfs=iddfs
                         )
-print(solution, n)
+print(type(solution))
+print(len(solution))
+input()
 
 
 import animation
 print("test")
+print(board.board)
 animation.draw(board.board, solution, prompt=False)

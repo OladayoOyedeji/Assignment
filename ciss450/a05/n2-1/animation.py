@@ -61,6 +61,7 @@ class Digit:
         surface.fill(BLACK,self.__rect)
 
     def update(self,vector):
+        print(vector)
         x0,y0,x1,y1 = vector
         dx = x1 - x0
         dy = y1 - y0
@@ -161,6 +162,9 @@ def draw(mat=[['0','1','2'],['3','4','5'],['6','7',' ']],
         newmatrix = move(None, d, mat)
         oldr, oldc = rowcol(oldmatrix, None)
         newr, newc = rowcol(newmatrix, None)
+        print("old matrix", oldmatrix)
+        print("new matrix", newmatrix)
+        print(d)
         vector = (oldr, oldc, newr, newc)        
         
         # draw

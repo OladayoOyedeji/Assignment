@@ -18,6 +18,7 @@ the same for FSQueue.
 """
 
 import collections
+import heapq
 
 
 class Fringe(object):
@@ -107,6 +108,31 @@ class FSQueue(Fringe):
     def __iter__(self):
         return iter(self.queue)
 
+import heapq
+from itertools import count
+class FPQueue(Fringe):
+    def __init__(self):
+        Fringe.__init__(self)
+        self.queue = []
+        self.counter = count()
+        
+    def put(self, item):
+        cost, data = item
+        heapq.heappush(self.queue, (cost, next(self.counter), data))
+    def get(self):
+        cost, _, data = heapq.heappop(self.queue)
+        return (cost, data)
+    def __len__(self):
+        return len(self.queue)
+    def size(self):
+        return len(self.queue)
+    def __contains__(self, node):
+        return node, _ in self.queue
+    def __str__(self):
+        s = str(self.queue)
+        return '<Queue [%s]>' % s
+    def __iter__(self):
+        return iter(self.queue)
 
 
 

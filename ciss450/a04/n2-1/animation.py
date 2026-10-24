@@ -61,6 +61,7 @@ class Digit:
         surface.fill(BLACK,self.__rect)
 
     def update(self,vector):
+        print(vector)
         x0,y0,x1,y1 = vector
         dx = x1 - x0
         dy = y1 - y0

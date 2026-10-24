@@ -1,0 +1,97 @@
+(a)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, 0)    {$q_0$};
+    \node[state]                      (q1)  at (2, 0)    {$q_1$};
+    \node[state]                      (q2)  at (4, 2)    {$q_2$};
+    \node[state]                      (q3)  at (4, -2)   {$q_3$};
+    \node[state]                      (q4)  at (6, 2)    {$q_4$};
+    \node[state]                      (q5)  at (6, -2)   {$q_5$};
+    \node[state]                      (q6)  at (8, 0)    {$q_6$};
+    \node[state]                      (q7)  at (10, 0)   {$q_7$};
+    \node[state]                      (q8)  at (10, -2)  {$q_8$};
+    \node[state]                      (q9)  at (10, -4)  {$q_9$};
+    
+    \node[state]                      (q10)  at (10, -6)    {$q_{10}$};
+    \node[state]                      (q11)  at (8, -6)    {$q_{11}$};
+    \node[state]                      (q12)  at (6, -4)    {$q_{12}$};
+    \node[state]                      (q13)  at (6, -8)   {$q_{13}$};
+    \node[state,accepting]            (q14)  at (4, -4)    {$q_{14}$};
+    \node[state,accepting]            (q15)  at (4, -8)    {$q_{15}$};
+
+     \path[->]
+     (q0)  edge                                   node {$\ep$}    (q1)
+     (q1)  edge                                   node {$\ep$}    (q2)
+     (q1)  edge                                   node {$\ep$}    (q3)
+     (q2)  edge                                   node {$0$}      (q4)
+     (q3)  edge                                   node {$1$}      (q5)
+     (q4)  edge                                   node {$\ep$}    (q6)
+     (q5)  edge                                   node {$\ep$}    (q6)
+     (q6)  edge                                   node {$0$}      (q7)
+     (q7)  edge                                   node {$0$}      (q8)
+     (q8)  edge                                   node {$0$}      (q9)
+     (q9)  edge                                   node {$\ep$}    (q10)
+     (q10) edge                                   node {$\ep$}    (q11)
+     (q11) edge                                   node {$\ep$}    (q12)
+     (q11) edge                                   node {$\ep$}    (q13)
+     (q12) edge                                   node {$0$}      (q14)
+     (q13) edge                                   node {$1$}      (q15)
+     
+     (q4)  edge [left, bend right=40]            node {$\ep$}    (q0)
+     (q5)  edge [left, bend left=40]             node {$\ep$}    (q0)
+
+     (q14) edge [left, bend left=40]             node {$\ep$}    (q10)
+     (q15) edge [left, bend right=40]            node {$\ep$}    (q10)
+     ;
+\end{tikzpicture}
+\end{center}
+
+(b)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, -1)   {$q_0$};
+    \node[state]                      (q1)  at (-2, 0)   {$q_1$};
+    \node[state]                      (q2)  at (-2, -2)  {$q_2$};
+    \node[state]                      (q3)  at (0, 2)    {$q_3$};
+    \node[state]                      (q4)  at (0, -4)   {$q_4$};
+    \node[state]                      (q5)  at (2, 2)    {$q_5$};
+    \node[state]                      (q6)  at (2, -4)   {$q_6$};
+    \node[state]                      (q7)  at (4, 2)    {$q_7$};
+    \node[state]                      (q8)  at (4, 0)    {$q_8$};
+    \node[state]                      (q9)  at (2, 0)    {$q_9$};
+    
+    \node[state]                      (q10) at (2, -2)    {$q_{10}$};
+
+     \path[->]
+     (q0)  edge                                   node {$\ep$}    (q1)
+     (q1)  edge                                   node {$0$}      (q2)
+     (q1)  edge                                   node {$\ep$}    (q3)
+     (q2)  edge                                   node {$0$}      (q4)
+     (q3)  edge                                   node {$\ep$}    (q5)
+     (q4)  edge                                   node {$1$}      (q6)
+     (q5)  edge                                   node {$0$}      (q7)
+     
+     (q7)  edge                                   node {$0$}      (q8)
+     (q8)  edge                                   node {$1$}      (q9)
+     (q9)  edge                                   node {$1$}      (q10)
+
+     (q8)  edge                                   node {$\ep$}    (q3)
+     (q10) edge                                   node {$\ep$}    (q0)
+     (q6)  edge                                   node {$\ep$}    (q0)
+     ;
+  \end{tikzpicture}
+\end{center}
+
+(c)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, 0)    {$q_0$};
+
+    \path[->]
+    (q0)  edge  [loop right]                      node {$\ep$}  ()
+    ;
+  \end{tikzpicture}
+\end{center}

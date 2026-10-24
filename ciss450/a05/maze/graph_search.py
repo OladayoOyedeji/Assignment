@@ -19,14 +19,22 @@ def graph_search(problem=None,
                  fringe=None,
                  closed_list=None,
                  view0=None,
-                 cost=None
+                 cost=None,
+                 iddfs=None
                  ):
     if cost == None:
-        return early_graph_search(problem=problem,
-                           Node=Node,
-                           fringe=fringe,
-                           closed_list=closed_list,
-                           view0=view0)
+        if iddfs == None:
+            return early_graph_search(problem=problem,
+                                      Node=Node,
+                                      fringe=fringe,
+                                      closed_list=closed_list,
+                                      view0=view0)
+        else:
+            return IDDFS_graph_search(problem=problem,
+                                      Node=Node,
+                                      fringe=fringe,
+                                      closed_list=closed_list,
+                                      view0=view0)
     else:
         return late_graph_search(problem=problem,
                            Node=Node,
@@ -115,7 +123,7 @@ def late_graph_search(problem=None,
     fringe.put((calc_cost(initial_state), (initial_state, [])))
     
     while len(fringe) != 0:
-        _, (node,sol) = fringe.get()
+        ocost, (node,sol) = fringe.get()
         sol = list(sol)
         
         if problem.goal_test(node): return sol
@@ -135,7 +143,7 @@ def late_graph_search(problem=None,
                 print(True)
                 print(solution)
                 print(n0, calc_cost(n0))
-                fringe.put((calc_cost(n0), (n0, solution)))
+                fringe.put((calc_cost(n0) + ocost, (n0, solution)))
            
         if view0:
             # Fringe = blue
@@ -165,3 +173,78 @@ def late_graph_search(problem=None,
             view0.run()
         
     return None # None is used to indicate no solution
+
+def DLS_graph_search(problem=None,
+                 Node=None,
+                 fringe=None,
+                 closed_list=None,
+                 view0=None,
+                 ):
+    
+    while len(fringe) != 0:
+        x, sol = fringe.get()
+        sol = list(sol)
+        node, depth = x
+        closed_list.put(node)
+        
+        maze = problem.maze
+
+        for d in problem.actions(x):
+            solution = sol.copy()
+            solution.append(d)
+            print(sol, d)
+            n0 = maze.get_adj_tuple(node, d)
+            print("new node", n0, "depth", depth+1)
+            if problem.goal_test(n0):
+                print("True")
+                return solution
+            print(closed_list.values(), n0)
+            if not (n0 in closed_list.values()):
+                print(True)
+                print(solution)
+                fringe.put(((n0, depth+1), solution))
+
+def IDDFS_graph_search(problem=None,
+                      Node=None,
+                      fringe=None,
+                      closed_list=None,
+                      view0=None,
+                      ):
+    initial_state = problem.get_initial_state()
+    if problem.goal_test(initial_state): return []
+    fringe.put(((initial_state, 0), []))
+    
+    for depth in range(1, 100):
+        problem.max_depth = depth
+        print("depth", depth, problem.max_depth)
+        print(fringe)
+        solutions = DLS_graph_search(problem, Node, fringe, closed_list)
+        
+        if view0:
+            # Fringe = blue
+            for node in fringe:
+                ((r, c), _), _ = node
+                
+                view0['maze'].background[(r, c)] = (0, 0, 255)
+            # Closed list = red
+            for state in closed_list.values():
+                r, c = state
+                view0['maze'].background[(r, c)] = (255, 0, 0)
+
+            # Initial state = green
+            r, c = problem.initial_state
+            view0['maze'].background[(r, c)] = (0, 255, 0)
+
+            goal_states = list(problem.goal_states)
+            for state in goal_states:
+                r, c = state
+                view0['maze'].background[(r, c)] = (0, 255, 0)
+            view0.run()
+        if solutions not in [None, []]:
+            print("solution?", solutions)
+            return solutions
+        else:
+            fringe.put(((initial_state, 0), []))
+            closed_list.__init__()
+
+    return None

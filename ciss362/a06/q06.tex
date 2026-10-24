@@ -1,0 +1,83 @@
+(a)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, 0)    {$q_0$};
+    \node[state,accepting]            (q1)  at (2, 2)    {$q_1$};
+    \node[state]                      (q2)  at (2, -2)   {$q_2$};
+    \node[state]                      (q3)  at (4, 2)    {$q_3$};
+    \node[state,accepting]            (q4)  at (4, -2)   {$q_4$};
+    \node[state]                      (q5)  at (6, 0)    {$q_5$};
+    \node[state]                      (q6)  at (8, 0)    {$q_6$};
+    \node[state,accepting]            (q7)  at (8, 2)    {$q_7$};
+
+     \path[->]
+     (q0)  edge                                   node {$a$}        (q1)
+     (q0)  edge                                   node {$\ep$}      (q2)
+     (q1)  edge                                   node {$\ep$}      (q3)
+     (q2)  edge                                   node {$b$}        (q4)
+     (q3)  edge                                   node {$a$}        (q5)
+     (q5)  edge                                   node {$a$}        (q6)
+     (q6)  edge                                   node {$a$}        (q7)
+     
+     (q7)  edge  [left, bend right=30]            node {$\ep$}     (q1)
+     ;
+  \end{tikzpicture}
+\end{center}
+
+(b)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, 0)    {$q_0$};
+    \node[state]                      (q1)  at (2, 2)    {$q_1$};
+    \node[state]                      (q2)  at (2, -2)   {$q_2$};
+    \node[state,accepting]            (q3)  at (4, 2)    {$q_3$};
+    \node[state]                      (q4)  at (4, -2)   {$q_4$};
+    \node[state,accepting]            (q5)  at (6, -2)   {$q_5$};
+
+     \path[->]
+     (q0)  edge                                   node {$\ep$}      (q1)
+     (q0)  edge                                   node {$\ep$}      (q2)
+     (q1)  edge                                   node {$a$}        (q3)
+     (q2)  edge                                   node {$a$}        (q4)
+     (q4)  edge                                   node {$b$}        (q5)
+
+     (q3)  edge  [loop above]                     node {$a$}        ()
+     (q5)  edge  [left, bend right=30]            node {$\ep$}      (q2)
+     ;
+  \end{tikzpicture}
+\end{center}
+
+(c)
+\begin{center}
+  \begin{tikzpicture}[shorten >=1pt,>=triangle 60,double distance=2pt,node distance=2cm,auto,initial text=]
+    
+    \node[state,initial]              (q0)  at (0, 0)    {$q_0$};
+    \node[state]                      (q1)  at (2, 2)    {$q_1$};
+    \node[state]                      (q2)  at (2, -2)   {$q_2$};
+    \node[state]                      (q3)  at (4, 2)    {$q_3$};
+    \node[state]                      (q4)  at (4, -2)   {$q_4$};
+    \node[state]                      (q5)  at (6, 0)    {$q_5$};
+    \node[state]                      (q6)  at (8, 0)    {$q_6$};
+    \node[state]                      (q7)  at (10, 0)   {$q_7$};
+    \node[state,accepting]            (q8)  at (10, -2)  {$q_8$};
+
+     \path[->]
+     (q0)  edge                                   node {$\ep$}      (q1)
+     (q0)  edge                                   node {$\ep$}      (q2)
+     (q1)  edge                                   node {$a$}        (q3)
+     (q2)  edge                                   node {$b$}        (q4)
+     (q4)  edge                                   node {$\ep$}      (q5)
+     (q3)  edge                                   node {$\ep$}      (q5)
+     (q5)  edge                                   node {$a$}        (q6)
+     (q6)  edge                                   node {$\ep$}      (q7)
+     (q7)  edge                                   node {$b$}        (q8)
+
+     (q4)  edge  [loop above]                     node {$b$}        ()
+     (q6)  edge  [loop above]                     node {$a$}        ()
+     (q8)  edge  [loop below]                     node {$b$}        ()
+     
+     ;
+  \end{tikzpicture}
+\end{center}

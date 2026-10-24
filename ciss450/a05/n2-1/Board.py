@@ -46,7 +46,15 @@ class Board:
                 break
             i += 1
         self.pos = (i // n, i % n)
-
+        
+    @classmethod
+    def copy(cls, board):
+        new_board = cls.__new__(cls)
+        new_board.board = board.board
+        new_board.size = board.size
+        new_board.pos = board.pos
+        return new_board
+        
     def __str__(self):
         return str(self.board)
 
@@ -121,8 +129,27 @@ class Board:
         else:
             raise NotImplementedError
         self.pos = i, j
+import copy
 
+class DLSBoard(Board):
+    def __init__(self, board, seperator=None, max_depth=-1):
+        self.board = copy.deepcopy(board.board)
+        self.size = board.size
+        self.pos = board.pos
+        self.max_depth = max_depth
 
+    def get_DLSdirections(self, depth):
+        if depth <= self.max_depth:
+            return self.get_directions()
+        return []
+    def copy(self):
+        new_board = self.__class__.__new__(self.__class__)
+        new_board.board = copy.deepcopy(self.board)
+        new_board.size = self.size
+        new_board.pos = self.pos
+        new_board.max_depth = self.max_depth
+        return new_board
+    
 class RandomBoard(Board):
     def __init__(self, n=3):
         size = n * n
